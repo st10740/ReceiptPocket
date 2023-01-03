@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="rect_radius">35dp</dimen>
+    <dimen name="rect_small_radius">10dp</dimen>
+    <dimen name="otext_size">20sp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+</resources>

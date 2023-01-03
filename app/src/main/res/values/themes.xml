@@ -13,4 +13,32 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="Theme.Transparent.Toolbar" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="windowActionBarOverlay">true</item>
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorPrimaryVariant">@color/blue</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/orange</item>
+        <item name="colorSecondaryVariant">@color/orange</item>
+        <item name="colorOnSecondary">@color/black</item>
+    </style>
+
+
+    <style name="CustomOutlineBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/orange</item>
+        <item name="android:textColorHint">@color/orange</item>
+        <item name="hintTextColor">@color/orange</item>
+    </style>
+    <style name="Theme.Transparent.Toolbar.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.Transparent.Toolbar.AppBarOverlay"
+        parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.Transparent.Toolbar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>
