@@ -28,17 +28,13 @@
     </style>
 
 
-    <style name="CustomOutlineBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+    <style name="MyTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <!-- border color -->
         <item name="boxStrokeColor">@color/orange</item>
-        <item name="android:textColorHint">@color/orange</item>
+        <!-- The color of the label when it is collapsed and the text field is active -->
         <item name="hintTextColor">@color/orange</item>
+        <!-- The color of the label in all other text field states (such as resting and disabled) -->
+        <item name="android:textColorHint">@color/gray97</item>
     </style>
-    <style name="Theme.Transparent.Toolbar.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-    <style name="Theme.Transparent.Toolbar.AppBarOverlay"
-        parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-    <style name="Theme.Transparent.Toolbar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

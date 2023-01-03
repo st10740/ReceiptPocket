@@ -17,7 +17,7 @@
             android:name=".RegisterActivity"
             android:exported="false"
             android:label="@string/title_activity_register"
-            android:theme="@style/Theme.Transparent.Toolbar.NoActionBar" />
+            android:theme="@style/Theme.Transparent.Toolbar" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
