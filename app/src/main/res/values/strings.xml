@@ -2,12 +2,17 @@
     <string name="app_name">ReceiptPocket</string>
     <string name="app_title">發票口袋</string>
     <string name="title_activity_register">RegisterActivity</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <string name="title_receipts">發票存摺</string>
+    <string name="title_qrscan">掃描</string>
+    <string name="title_account">會員</string>
+    <string name="title_win">中獎查詢</string>
+
+    <string name="fragment_title_receipts">發票口袋</string>
+    <string name="fragment_title_qrscan">掃描發票</string>
+    <string name="fragment_title_account">會員中心</string>
+    <string name="fragment_title_win">中獎查詢</string>
+    <string name="fragment_title_win_receipts">中獎發票</string>
+    <string name="fragment_title_win_receipts_detail">發票資訊</string>
 </resources>

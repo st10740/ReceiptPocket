@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/it_receipts"
+        android:title="@string/title_receipts"
+        android:icon="@drawable/ic_receipts"/>
+    <item
+        android:id="@+id/it_qrscan"
+        android:title="@string/title_qrscan"
+        android:icon="@drawable/ic_qrscan"/>
+    <item
+        android:id="@+id/it_account"
+        android:title="@string/title_account"
+        android:icon="@drawable/ic_account"/>
+    <item
+        android:id="@+id/it_win"
+        android:title="@string/title_win"
+        android:icon="@drawable/ic_win"/>
+</menu>

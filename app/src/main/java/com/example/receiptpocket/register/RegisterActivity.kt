@@ -1,9 +1,9 @@
-package com.example.receiptpocket
+package com.example.receiptpocket.register
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import androidx.appcompat.widget.Toolbar
+import com.example.receiptpocket.R
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var backBtn:Button
@@ -14,6 +14,6 @@ class RegisterActivity : AppCompatActivity() {
 
         // Back Button
         backBtn = findViewById(R.id.back_btn)
-        backBtn.setOnClickListener { finish() }
+        backBtn.setOnClickListener { finish() } // 需再改
     }
 }
