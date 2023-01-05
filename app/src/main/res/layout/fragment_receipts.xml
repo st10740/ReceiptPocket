@@ -81,7 +81,107 @@
         android:layout_marginTop="@dimen/lr_margin"
         app:layout_constraintStart_toStartOf="@id/white_rect"
         app:layout_constraintEnd_toEndOf="@id/white_rect"
-        app:layout_constraintTop_toTopOf="@id/white_rect"/>
+        app:layout_constraintTop_toTopOf="@id/white_rect"
+        android:background="@drawable/gray_rect_90angle"/>
+
+    <com.example.receiptpocket.MonthPicker
+        android:id="@+id/month_picker"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="@id/gray_rect"
+        app:layout_constraintEnd_toEndOf="@id/gray_rect"
+        app:layout_constraintTop_toTopOf="@id/gray_rect"/>
+
+    <TextView
+        android:id="@+id/price_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="消費金額"
+        android:textColor="@color/black"
+        android:textSize="@dimen/otext_size"
+        app:layout_constraintStart_toStartOf="@id/gray_rect"
+        app:layout_constraintEnd_toStartOf="@id/pnum_textview"
+        app:layout_constraintTop_toBottomOf="@id/month_picker"/>
+
+
+    <TextView
+        android:id="@+id/pnum_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="發票張數"
+        android:textColor="@color/black"
+        android:textSize="@dimen/otext_size"
+        app:layout_constraintStart_toEndOf="@id/price_textview"
+        app:layout_constraintEnd_toEndOf="@id/gray_rect"
+        app:layout_constraintTop_toTopOf="@id/price_textview"/>
+
+    <LinearLayout
+        android:id="@+id/price_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@id/gray_rect"
+        app:layout_constraintEnd_toStartOf="@id/pnum_layout"
+        app:layout_constraintTop_toBottomOf="@id/price_textview">
+
+        <TextView
+            android:id="@+id/price_symbol_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$"
+            android:textColor="@color/black"
+            android:textSize="@dimen/otext_size"/>
+
+        <TextView
+            android:id="@+id/price_num_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="39"
+            android:textColor="@color/black"
+            android:textSize="@dimen/otext_size"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/pnum_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/price_layout"
+        app:layout_constraintEnd_toEndOf="@id/gray_rect"
+        app:layout_constraintTop_toTopOf="@id/price_layout">
+
+        <TextView
+            android:id="@+id/pnum_symbol_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:textColor="@color/black"
+            android:textSize="@dimen/otext_size"/>
+
+        <TextView
+            android:id="@+id/pnum_num_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="張"
+            android:textColor="@color/black"
+            android:textSize="@dimen/otext_size"/>
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/receipts_recyclerview"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/lr_margin"
+        app:layout_constraintStart_toStartOf="@id/gray_rect"
+        app:layout_constraintEnd_toEndOf="@id/gray_rect"
+        app:layout_constraintTop_toBottomOf="@id/gray_rect"
+        app:layout_constraintBottom_toBottomOf="@id/white_rect"/>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

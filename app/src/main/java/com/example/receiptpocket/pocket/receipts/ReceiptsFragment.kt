@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import com.example.receiptpocket.MonthPicker
 import com.example.receiptpocket.R
 import com.example.receiptpocket.pocket.PocketActivity
+import com.example.receiptpocket.prefs
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,6 +27,7 @@ class ReceiptsFragment : Fragment() {
     private var param2: String? = null
 
     private lateinit var receiptsToolbar: Toolbar
+    private lateinit var monthPicker: MonthPicker
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,21 +45,34 @@ class ReceiptsFragment : Fragment() {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_receipts, container, false)
 
-        // Toolbar setting
-        setUpToolbar(view)
+        // binding view
+        bindingViews(view)
 
+        // Toolbar setting
+        setUpToolbar()
+
+        // MonthPicket setting
+        setMonthPicker()
 
         return view
     }
 
-
-    private fun setUpToolbar(view: View){
+    private fun bindingViews(view: View){
         receiptsToolbar = view.findViewById<Toolbar>(R.id.receipts_toolbar)
+        monthPicker = view.findViewById(R.id.month_picker)
+
+    }
+
+    private fun setUpToolbar(){
         receiptsToolbar.title = ""
         (activity as PocketActivity?)?.setSupportActionBar(receiptsToolbar)
 
     }
 
+    private fun setMonthPicker(){
+        monthPicker.setMinYear(prefs.yearPref)
+        monthPicker.setMinMonth(prefs.monthPref)
+    }
 
     companion object {
         /**

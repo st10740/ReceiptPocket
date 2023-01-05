@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MonthPicker">
+        <attr name="default_year" format="integer"/>
+        <attr name="default_month" format="integer" />
+        <attr name="min_year" format="integer"/>
+        <attr name="min_month" format="integer"/>
+        <attr name="max_year" format="integer"/>
+        <attr name="max_month" format="integer"/>
+    </declare-styleable>
+</resources>
