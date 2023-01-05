@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <Button
+        android:id="@+id/left_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="0dp"
+        android:background="@drawable/ic_arrow_left"/>
+
+    <TextView
+        android:id="@+id/tw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="民國"
+        android:textColor="@color/black"
+        android:textSize="@dimen/otext_size"/>
+
+    <TextView
+        android:id="@+id/year_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="112"
+        android:textColor="@color/black"
+        android:textSize="@dimen/otext_size"/>
+
+    <TextView
+        android:id="@+id/year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="年"
+        android:textColor="@color/black"
+        android:textSize="@dimen/otext_size"/>
+
+    <TextView
+        android:id="@+id/month_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1"
+        android:textColor="@color/black"
+        android:textSize="@dimen/otext_size"/>
+
+    <TextView
+        android:id="@+id/month"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="月"
+        android:textColor="@color/black"
+        android:textSize="@dimen/otext_size"/>
+
+    <Button
+        android:id="@+id/right_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="0dp"
+        android:background="@drawable/ic_arrow_right"/>
+
+</LinearLayout>
