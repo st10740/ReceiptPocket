@@ -1,53 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout2"
+    android:id="@+id/frameLayout4"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".pocket.receipts.ReceiptsFragment">
+    tools:context=".pocket.receipts.ReceiptsDateFragment">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/receipts_toolbar"
-        android:layout_width="match_parent"
+        android:id="@+id/receipts_date_toolbar"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:contentInsetLeft="0dp"
-        app:contentInsetStart="0dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <Button
-                android:id="@+id/date_barbtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="日期分類"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="@dimen/lr_margin"
-                android:textSize="@dimen/otext_size"
-                android:textColor="@color/white"
-                android:background="?android:attr/selectableItemBackground"/>
-
-            <Button
-                android:id="@+id/analyze_barbtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="消費分析"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/lr_margin"
-                android:textSize="@dimen/otext_size"
-                android:textColor="@color/white"
-                android:background="?android:attr/selectableItemBackground"/>
-
-        </RelativeLayout>
-
-    </androidx.appcompat.widget.Toolbar>
+        app:titleTextColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
-        android:id="@+id/receipts_title"
+        android:id="@+id/receipts_date_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/small_margin"
@@ -57,7 +27,7 @@
         android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/receipts_toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/receipts_date_toolbar" />
 
     <View
         android:id="@+id/white_rect"
@@ -69,7 +39,7 @@
         android:layout_marginBottom="@dimen/small_margin"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/receipts_title"
+        app:layout_constraintTop_toBottomOf="@id/receipts_date_title"
         app:layout_constraintBottom_toBottomOf="parent"
         android:background="@drawable/white_rect"/>
 
@@ -87,17 +57,32 @@
         app:layout_constraintBottom_toBottomOf="@id/price_layout"
         android:background="@drawable/gray_rect_90angle"/>
 
-    <com.example.receiptpocket.MonthPicker
-        android:id="@+id/month_picker"
+    <View
+        android:id="@+id/date_rect"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
+        android:layout_height="35dp"
         android:layout_marginStart="@dimen/small_margin"
         android:layout_marginEnd="@dimen/small_margin"
         android:layout_marginTop="@dimen/small_margin"
         app:layout_constraintStart_toStartOf="@id/gray_rect"
         app:layout_constraintEnd_toEndOf="@id/gray_rect"
-        app:layout_constraintTop_toTopOf="@id/gray_rect"/>
+        app:layout_constraintTop_toTopOf="@id/gray_rect"
+        android:background="@drawable/gray_rect_10angle"/>
+
+    <TextView
+        android:id="@+id/date_textview"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="2023 年 1 月 10 日"
+        android:textColor="@color/black"
+        android:textSize="@dimen/smalltext_size"
+        android:gravity="center"
+        android:onClick="onClick"
+        android:clickable="true"
+        app:layout_constraintStart_toStartOf="@id/date_rect"
+        app:layout_constraintEnd_toEndOf="@id/date_rect"
+        app:layout_constraintTop_toTopOf="@id/date_rect"
+        app:layout_constraintBottom_toBottomOf="@id/date_rect"/>
 
     <TextView
         android:id="@+id/price_textview"
@@ -106,9 +91,10 @@
         android:text="消費金額"
         android:textColor="@color/black"
         android:textSize="@dimen/smalltext_size"
+        android:layout_marginTop="@dimen/small_margin"
         app:layout_constraintStart_toStartOf="@id/gray_rect"
         app:layout_constraintEnd_toStartOf="@id/pnum_textview"
-        app:layout_constraintTop_toBottomOf="@id/month_picker"/>
+        app:layout_constraintTop_toBottomOf="@id/date_rect"/>
 
 
     <TextView
@@ -177,7 +163,7 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/receipts_month_recyclerview"
+        android:id="@+id/receipts_date_recyclerview"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="@dimen/lr_margin"
@@ -185,7 +171,5 @@
         app:layout_constraintEnd_toEndOf="@id/gray_rect"
         app:layout_constraintTop_toBottomOf="@id/gray_rect"
         app:layout_constraintBottom_toBottomOf="@id/white_rect"/>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

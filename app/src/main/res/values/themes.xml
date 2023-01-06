@@ -26,6 +26,9 @@
         <item name="colorSecondary">@color/orange</item>
         <item name="colorSecondaryVariant">@color/orange</item>
         <item name="colorOnSecondary">@color/black</item>
+
+        <!-- DatePickerDialog style -->
+        <item name="android:datePickerStyle">@style/myDatePickerStyle</item>
     </style>
 
 
@@ -36,6 +39,10 @@
         <item name="hintTextColor">@color/orange</item>
         <!-- The color of the label in all other text field states (such as resting and disabled) -->
         <item name="android:textColorHint">@color/gray97</item>
+    </style>
+
+    <style name="myDatePickerStyle" parent="android:Widget.Material.DatePicker">
+        <item name="android:datePickerMode">spinner</item>
     </style>
 
 </resources>

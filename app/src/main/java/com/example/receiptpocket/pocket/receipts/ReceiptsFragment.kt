@@ -1,9 +1,11 @@
 package com.example.receiptpocket.pocket.receipts
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.example.receiptpocket.MonthPicker
@@ -21,12 +23,14 @@ private const val ARG_PARAM2 = "param2"
  * Use the [ReceiptsFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ReceiptsFragment : Fragment() {
+class ReceiptsFragment : Fragment(), View.OnClickListener {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
 
     private lateinit var receiptsToolbar: Toolbar
+    private lateinit var dateBtn: Button
+    private lateinit var analyzeBtn: Button
     private lateinit var monthPicker: MonthPicker
 
 
@@ -48,18 +52,21 @@ class ReceiptsFragment : Fragment() {
         // binding view
         bindingViews(view)
 
-        // Toolbar setting
         setUpToolbar()
-
-        // MonthPicket setting
         setMonthPicker()
+
+        dateBtn.setOnClickListener(this)
+        analyzeBtn.setOnClickListener(this)
 
         return view
     }
 
     private fun bindingViews(view: View){
         receiptsToolbar = view.findViewById<Toolbar>(R.id.receipts_toolbar)
+        dateBtn = view.findViewById(R.id.date_barbtn)
+        analyzeBtn = view.findViewById(R.id.analyze_barbtn)
         monthPicker = view.findViewById(R.id.month_picker)
+
 
     }
 
@@ -72,6 +79,22 @@ class ReceiptsFragment : Fragment() {
     private fun setMonthPicker(){
         monthPicker.setMinYear(prefs.yearPref)
         monthPicker.setMinMonth(prefs.monthPref)
+    }
+
+
+    private fun loadFragment(fragment: Fragment){
+        (activity as PocketActivity?)?.supportFragmentManager?.beginTransaction()
+            ?.replace(R.id.container,fragment)
+            ?.addToBackStack(null)
+            ?.commit()
+    }
+
+    override fun onClick(v: View?) {
+        Log.i("click", "enter onClick")
+        when(v?.id){
+            R.id.date_barbtn -> { Log.i("click","click date"); loadFragment(ReceiptsDateFragment()) }
+            R.id.analyze_barbtn -> { Log.i("click","click analyze") }
+        }
     }
 
     companion object {
@@ -93,4 +116,6 @@ class ReceiptsFragment : Fragment() {
                 }
             }
     }
+
+
 }

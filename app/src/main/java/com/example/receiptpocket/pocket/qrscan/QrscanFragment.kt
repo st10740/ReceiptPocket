@@ -44,8 +44,8 @@ class QrscanFragment : Fragment() {
 
         TestBtn = view.findViewById(R.id.test_prefs_btn)
         TestBtn.setOnClickListener {
-            prefs.yearPref = 110
-            prefs.monthPref = 6
+//            prefs.yearPref = 110
+//            prefs.monthPref = 6
             Log.i("Test", "year: ${prefs.yearPref}")
             Log.i("Test", "month: ${prefs.monthPref}")
         }
