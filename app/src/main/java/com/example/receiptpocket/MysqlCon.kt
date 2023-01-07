@@ -61,4 +61,17 @@ class MysqlCon {
     }
 
 
+    fun insertAccount(id: String, name: String, password: String){
+        try {
+            val con = DriverManager.getConnection(url, db_user, db_password)
+            val sql = "INSERT INTO Account(id, name, password) VALUES('${id}', '${name}', '${password}')"
+            val st = con.createStatement()
+            st.executeUpdate(sql)
+            st.close()
+
+        } catch (e: SQLException){
+            e.printStackTrace()
+        }
+    }
+
 }

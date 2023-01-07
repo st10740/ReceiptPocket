@@ -103,6 +103,7 @@ class MainActivity : AppCompatActivity(), LoginView, View.OnClickListener {
             R.id.login_btn -> {
                 accTextInputLayout.isErrorEnabled = false // 每次按登入鍵都把error關掉
                 pwTextInputLayout.isErrorEnabled = false
+
                 loginPresenter = LoginPresenterImpl(this)
                 loginPresenter.validateLogin(accEditText.text.toString().trim()
                     , pwEditText.text.toString().trim())

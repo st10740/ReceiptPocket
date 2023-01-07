@@ -54,7 +54,7 @@
         app:layout_constraintTop_toTopOf="@+id/register_rect" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/acc_textinput"
+        android:id="@+id/acc_text_input_layout"
         style="@style/MyTextInputLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -67,6 +67,7 @@
         app:layout_constraintTop_toBottomOf="@+id/register_txt">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/acc_edit_text"
             android:layout_width="match_parent"
             android:layout_height="@dimen/text_input_edit_text_height"
             android:inputType="text"
@@ -76,16 +77,17 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/name_textinput"
+        android:id="@+id/name_text_input_layout"
         style="@style/MyTextInputLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        app:layout_constraintEnd_toEndOf="@+id/acc_textinput"
-        app:layout_constraintStart_toStartOf="@+id/acc_textinput"
-        app:layout_constraintTop_toBottomOf="@+id/acc_textinput">
+        app:layout_constraintEnd_toEndOf="@+id/acc_text_input_layout"
+        app:layout_constraintStart_toStartOf="@+id/acc_text_input_layout"
+        app:layout_constraintTop_toBottomOf="@+id/acc_text_input_layout">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/name_edit_text"
             android:layout_width="match_parent"
             android:layout_height="@dimen/text_input_edit_text_height"
             android:inputType="text"
@@ -95,17 +97,18 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/pw_textinput"
+        android:id="@+id/pw_text_input_layout"
         style="@style/MyTextInputLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:passwordToggleEnabled="true"
         android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toEndOf="@+id/acc_textinput"
-        app:layout_constraintStart_toStartOf="@+id/acc_textinput"
-        app:layout_constraintTop_toBottomOf="@+id/name_textinput">
+        app:layout_constraintEnd_toEndOf="@+id/acc_text_input_layout"
+        app:layout_constraintStart_toStartOf="@+id/acc_text_input_layout"
+        app:layout_constraintTop_toBottomOf="@+id/name_text_input_layout">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/pw_edit_text"
             android:layout_width="match_parent"
             android:layout_height="@dimen/text_input_edit_text_height"
             android:inputType="textPassword"
@@ -124,9 +127,8 @@
         android:textSize="@dimen/otext_size"
         app:layout_constraintEnd_toEndOf="@+id/register_rect"
         app:layout_constraintStart_toStartOf="@+id/register_rect"
-        app:layout_constraintTop_toBottomOf="@+id/pw_textinput"
+        app:layout_constraintTop_toBottomOf="@+id/pw_text_input_layout"
         tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
-
 
 
     <Button
@@ -140,5 +142,16 @@
         app:layout_constraintEnd_toEndOf="@+id/register_rect"
         app:layout_constraintStart_toStartOf="@+id/register_rect"
         app:layout_constraintTop_toBottomOf="@+id/register_btn" />
+
+
+    <ProgressBar
+        android:id="@+id/register_progress_bar"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
