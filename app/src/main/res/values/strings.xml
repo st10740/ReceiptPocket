@@ -15,6 +15,13 @@
     <string name="fragment_title_win">中獎查詢</string>
     <string name="fragment_title_win_receipts">中獎發票</string>
     <string name="fragment_title_receipts_detail">發票資訊</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
+    <string name="username_error">帳號錯誤</string>
+    <string name="password_error">密碼錯誤</string>
+    <string name="blank_username_error">帳號不可為空</string>
+    <string name="blank_password_error">密碼不可為空</string>
+
+
+    !-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
