@@ -69,7 +69,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="@dimen/text_input_edit_text_height"
             android:inputType="text"
             android:maxLines="1"
             android:hint="帳號" />
@@ -89,7 +89,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="@dimen/text_input_edit_text_height"
             android:inputType="textPassword"
             android:maxLines="1"
             android:hint="密碼" />
@@ -122,6 +122,16 @@
         app:layout_constraintEnd_toEndOf="@+id/login_rect"
         app:layout_constraintStart_toStartOf="@+id/login_rect"
         app:layout_constraintTop_toBottomOf="@+id/login_btn" />
+
+    <ProgressBar
+        android:id="@+id/login_process_bar"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

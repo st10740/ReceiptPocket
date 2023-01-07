@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:text="日期分類"
                 android:layout_alignParentLeft="true"
-                android:layout_marginLeft="@dimen/lr_margin"
+                android:layout_marginLeft="@dimen/small_margin"
                 android:textSize="@dimen/otext_size"
                 android:textColor="@color/white"
                 android:background="?android:attr/selectableItemBackground"/>
@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:text="消費分析"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/lr_margin"
+                android:layout_marginRight="@dimen/small_margin"
                 android:textSize="@dimen/otext_size"
                 android:textColor="@color/white"
                 android:background="?android:attr/selectableItemBackground"/>
@@ -65,7 +65,7 @@
         android:layout_height="0dp"
         android:layout_marginStart="@dimen/small_margin"
         android:layout_marginEnd="@dimen/small_margin"
-        android:layout_marginTop="@dimen/small_margin"
+        android:layout_marginTop="@dimen/lr_margin"
         android:layout_marginBottom="@dimen/small_margin"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

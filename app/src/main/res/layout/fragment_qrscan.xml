@@ -7,7 +7,24 @@
     android:layout_height="match_parent"
     tools:context=".pocket.qrscan.QrscanFragment">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/qrscan_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
 
+        <Button
+            android:id="@+id/manual_input_barbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="@dimen/small_margin"
+            android:text="手動輸入"
+            android:textSize="@dimen/otext_size"
+            android:textColor="@color/white"
+            android:background="?android:attr/selectableItemBackground"/>
+
+    </androidx.appcompat.widget.Toolbar>
 
     <Button
         android:id="@+id/test_prefs_btn"
