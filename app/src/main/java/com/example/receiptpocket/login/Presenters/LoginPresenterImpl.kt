@@ -19,9 +19,8 @@ class LoginPresenterImpl(val loginView: LoginView): LoginPresenter, OnLoginFinis
     }
 
     // implement OnLoginFinishedListener interface
-    override fun onSuccess(id: String, name: String, password: String) {
+    override fun onSuccess() {
         loginView.hideProgress()
-        loginView.setAccountPrefs(id, name, password)
         loginView.navigateToPocket()
     }
 

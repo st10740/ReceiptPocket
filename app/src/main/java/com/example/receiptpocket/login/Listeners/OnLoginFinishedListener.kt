@@ -1,7 +1,7 @@
 package com.example.receiptpocket.login.Listeners
 
 interface OnLoginFinishedListener {
-    fun onSuccess(id: String, name: String, password: String)
+    fun onSuccess()
     fun setErrorUsername()
     fun setErrorPassword()
     fun setEmptyUsername()

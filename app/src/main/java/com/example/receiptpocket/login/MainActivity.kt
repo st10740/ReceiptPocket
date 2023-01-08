@@ -33,6 +33,8 @@ class MainActivity : AppCompatActivity(), LoginView, View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        checkLoginOrNot()
+
         bindingViews()
 
         registerBtn.setOnClickListener(this)
@@ -48,6 +50,12 @@ class MainActivity : AppCompatActivity(), LoginView, View.OnClickListener {
         registerBtn = findViewById(R.id.register_btn)
         loginBtn = findViewById(R.id.login_btn)
         progressBar = findViewById(R.id.login_progress_bar)
+    }
+
+    private fun checkLoginOrNot(){
+        if(!prefs.userNamePrefs.equals("")){
+            startActivity(Intent(this, PocketActivity::class.java))
+        }
     }
 
 
@@ -91,11 +99,6 @@ class MainActivity : AppCompatActivity(), LoginView, View.OnClickListener {
         startActivity(Intent(this, PocketActivity::class.java))
     }
 
-    override fun setAccountPrefs(id: String, name: String, password: String) {
-        prefs.userNamePrefs = id
-        prefs.namePrefs = name
-        prefs.passwordPrefs = password
-    }
 
 
     override fun onClick(v: View?) {

@@ -8,5 +8,4 @@ interface LoginView {
     fun setErrorEmptyUserName()
     fun setErrorEmptyPassword()
     fun navigateToPocket()
-    fun setAccountPrefs(id: String, name: String, password: String)
 }

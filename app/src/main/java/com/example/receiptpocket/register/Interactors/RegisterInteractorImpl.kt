@@ -11,7 +11,7 @@ class RegisterInteractorImpl : RegisterInteractor {
         password: String,
         listener: OnRegisterFinishedListener
     ) {
-        Thread( Runnable {
+        Thread{
 
             if((!id.equals("")) && (!name.equals("")) && (!password.equals(""))){
 
@@ -34,6 +34,6 @@ class RegisterInteractorImpl : RegisterInteractor {
 
             if(password.equals("")) { listener.setEmptyPassword() }
 
-        }).start()
+        }.start()
     }
 }
