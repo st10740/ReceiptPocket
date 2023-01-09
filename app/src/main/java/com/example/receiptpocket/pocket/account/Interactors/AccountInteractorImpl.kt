@@ -1,9 +1,8 @@
 package com.example.receiptpocket.pocket.account.Interactors
 
-import android.util.Log
 import com.example.receiptpocket.App
-import com.example.receiptpocket.MysqlCon
-import com.example.receiptpocket.ReceiptModel
+import com.example.receiptpocket.mySQL.MysqlCon
+import com.example.receiptpocket.mySQL.ReceiptModel
 import com.example.receiptpocket.Room.ReceiptDatabase
 import com.example.receiptpocket.pocket.account.Listeners.OnLogoutFinishedListener
 import com.example.receiptpocket.prefs

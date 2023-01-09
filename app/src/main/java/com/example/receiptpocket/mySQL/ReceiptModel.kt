@@ -1,6 +1,4 @@
-package com.example.receiptpocket
-
-import androidx.annotation.NonNull
+package com.example.receiptpocket.mySQL
 
 data class ReceiptModel(
     val sid: String,

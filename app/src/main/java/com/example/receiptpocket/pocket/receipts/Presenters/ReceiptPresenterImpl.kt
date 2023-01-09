@@ -1,5 +1,6 @@
 package com.example.receiptpocket.pocket.receipts.Presenters
 
+import com.example.receiptpocket.Room.Receipt
 import com.example.receiptpocket.pocket.receipts.Interactors.ReceiptInteractor
 import com.example.receiptpocket.pocket.receipts.Interactors.ReceiptInteractorImpl
 import com.example.receiptpocket.pocket.receipts.Listeners.OnReceiptItemGetListener
@@ -24,11 +25,20 @@ class ReceiptPresenterImpl(val view: ReceiptView): ReceiptPresenter, OnReceiptIt
 
     }
 
+    override fun loadCertainItem(id: String, code_1: String, code_2: String) {
+        view.showProgressBar()
+        receiptInteractor.getItem(id, code_1, code_2, this)
+    }
+
     override fun getItemSuccess(list: List<ReceiptItem>) {
         view.hindProgressBar()
         view.initRecycler(list)
     }
 
+    override fun getOneReceiptSuccess(item: Receipt) {
+        view.hindProgressBar()
+        view.navigateToManualWithData(item)
+    }
 
 
 }

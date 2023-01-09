@@ -58,6 +58,15 @@ class ReceiptRecyclerAdapter(private val listener: OnItemClickListener) :
         return itemList.size
     }
 
+    fun getTotalPrice(): Int {
+        var total= 0
+        for(item in itemList){
+            total+=item.price.toInt()
+        }
+
+        return total
+    }
+
     fun updateList(list: List<ReceiptItem>){
         itemList = list
     }

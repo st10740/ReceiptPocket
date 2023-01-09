@@ -1,4 +1,4 @@
-package com.example.receiptpocket.pocket.qrscan
+package com.example.receiptpocket.pocket.qrscan.qrscan
 
 import android.os.Bundle
 import android.util.Log
@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import com.example.receiptpocket.R
 import com.example.receiptpocket.pocket.PocketActivity
+import com.example.receiptpocket.pocket.qrscan.manualInput.ManualInputFragment
 import com.example.receiptpocket.prefs
 
 // TODO: Rename parameter arguments, choose names that match

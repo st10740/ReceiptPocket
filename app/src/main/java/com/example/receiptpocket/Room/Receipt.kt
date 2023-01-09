@@ -9,17 +9,11 @@ data class Receipt(
 
     val sid: String,
     val store: String?,
-
     @NonNull val year: Int,
-
     @NonNull val month: Int,
-
     @NonNull val day: Int,
-
-    @NonNull val code_1: String,
-
-    @NonNull val code_2: String,
-
+    val code_1: String,
+    val code_2: String,
     val price: Int?,
     val describes: String?
 )

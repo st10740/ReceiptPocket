@@ -2,7 +2,6 @@ package com.example.receiptpocket.pocket.receipts.Interactors
 
 import android.util.Log
 import com.example.receiptpocket.App
-import com.example.receiptpocket.MysqlCon
 import com.example.receiptpocket.Room.ReceiptDatabase
 import com.example.receiptpocket.pocket.receipts.Listeners.OnReceiptItemGetListener
 import com.example.receiptpocket.pocket.receipts.ReceiptItem
@@ -59,6 +58,25 @@ class ReceiptInteractorImpl : ReceiptInteractor {
             } catch (e: SQLException){
                 e.printStackTrace()
             }
+        }.start()
+    }
+
+    override fun getItem(
+        id: String,
+        code_1: String,
+        code_2: String,
+        listener: OnReceiptItemGetListener
+    ) {
+        Thread{
+            try {
+                val receiptDao = ReceiptDatabase.getDatabase(App.appContext).receiptDao()
+                val receiptItem = receiptDao.getOneItem(id, code_1, code_2)
+                listener.getOneReceiptSuccess(receiptItem)
+
+            } catch (e: SQLException){
+                e.printStackTrace()
+            }
+
         }.start()
     }
 }

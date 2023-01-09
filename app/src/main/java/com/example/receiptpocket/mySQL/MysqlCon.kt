@@ -1,4 +1,4 @@
-package com.example.receiptpocket
+package com.example.receiptpocket.mySQL
 
 import android.util.Log
 import java.sql.DriverManager
@@ -93,8 +93,10 @@ class MysqlCon {
                 val price = rs.getInt("price")
                 val describes = rs.getString("describes")
 
-                receiptList.add(ReceiptModel(sid=sid, store=store, year=year, month=month, day=day,
-                    code_1=code_1, code_2=code_2, price=price, describes=describes))
+                receiptList.add(
+                    ReceiptModel(sid=sid, store=store, year=year, month=month, day=day,
+                    code_1=code_1, code_2=code_2, price=price, describes=describes)
+                )
             }
             st.close()
         } catch (e: SQLException){

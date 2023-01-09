@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AutoCompleteTextView
 import com.example.receiptpocket.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -22,6 +23,9 @@ class WinFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private lateinit var monthDropDown: AutoCompleteTextView
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -35,7 +39,15 @@ class WinFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_win, container, false)
+        val view = inflater.inflate(R.layout.fragment_win, container, false)
+
+        bindingViews(view)
+
+        return view
+    }
+
+    private fun bindingViews(view: View){
+        monthDropDown = view.findViewById(R.id.month_dropdown)
     }
 
     companion object {

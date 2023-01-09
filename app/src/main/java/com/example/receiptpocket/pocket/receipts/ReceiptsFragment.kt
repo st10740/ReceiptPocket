@@ -7,13 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.receiptpocket.App
 import com.example.receiptpocket.R
+import com.example.receiptpocket.Room.Receipt
 import com.example.receiptpocket.pocket.PocketActivity
+import com.example.receiptpocket.pocket.qrscan.manualInput.ManualInputFragment
 import com.example.receiptpocket.pocket.receipts.Presenters.ReceiptPresenter
 import com.example.receiptpocket.pocket.receipts.Presenters.ReceiptPresenterImpl
 import com.example.receiptpocket.pocket.receipts.Views.ReceiptView
@@ -36,6 +39,8 @@ class ReceiptsFragment : Fragment(), View.OnClickListener, ReceiptView,
     private var param2: String? = null
 
     private lateinit var receiptsToolbar: Toolbar
+    private lateinit var priceTextView: TextView
+    private lateinit var pieceTextView: TextView
     private lateinit var dateBtn: Button
     private lateinit var analyzeBtn: Button
     private lateinit var monthPicker: MonthPicker
@@ -77,6 +82,8 @@ class ReceiptsFragment : Fragment(), View.OnClickListener, ReceiptView,
 
     private fun bindingViews(view: View){
         receiptsToolbar = view.findViewById<Toolbar>(R.id.receipts_toolbar)
+        priceTextView = view.findViewById(R.id.price_num_textview)
+        pieceTextView = view.findViewById(R.id.piece_textview)
         dateBtn = view.findViewById(R.id.date_barbtn)
         analyzeBtn = view.findViewById(R.id.analyze_barbtn)
         monthPicker = view.findViewById(R.id.month_picker)
@@ -141,14 +148,33 @@ class ReceiptsFragment : Fragment(), View.OnClickListener, ReceiptView,
         recyclerView.post{
             recyclerAdapter.notifyDataSetChanged()
             recyclerAdapter.updateList(list)
+
+            // 更新畫面中的總金額和張數
+            priceTextView.text = recyclerAdapter.getTotalPrice().toString()
+            pieceTextView.text = recyclerAdapter.itemCount.toString()
         }
 
     }
 
+    override fun navigateToManualWithData(data: Receipt) {
+        val store = data.store ?: ""
+        val year = data.year.toString()
+        val month = data.month.toString()
+        val day = data.day.toString()
+        val code_1 = data.code_1
+        val code_2 = data.code_2
+        val price = data.price?.toString() ?: ""
+        val describes = data.describes ?: ""
+
+        loadFragment(
+            ManualInputFragment.newInstance(store, year, month, day,
+            code_1, code_2, price, describes))
+    }
+
 
     override fun onItemClick(receiptItem: ReceiptItem) {
-        //TODO: Use (prefs.username, receiptItem.code) to call presenter to query receipt details from Room
-        //loadFragment(ManualInputFragment.newInstance())
+        receiptPresenter.loadCertainItem(prefs.userNamePrefs!!,
+            receiptItem.code.substring(0,2), receiptItem.code.substring(3, 11))
     }
 
     override fun onAddOrMinusBtnClick() {

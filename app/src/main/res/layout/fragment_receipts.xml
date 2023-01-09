@@ -159,7 +159,7 @@
         app:layout_constraintTop_toTopOf="@id/price_layout">
 
         <TextView
-            android:id="@+id/pnum_symbol_textview"
+            android:id="@+id/piece_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="1"
@@ -167,7 +167,7 @@
             android:textSize="@dimen/stext_size"/>
 
         <TextView
-            android:id="@+id/pnum_num_textview"
+            android:id="@+id/piece_symbol_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="張"

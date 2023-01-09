@@ -1,6 +1,6 @@
 package com.example.receiptpocket.register.Interactors
 
-import com.example.receiptpocket.MysqlCon
+import com.example.receiptpocket.mySQL.MysqlCon
 import com.example.receiptpocket.register.Listeners.OnRegisterFinishedListener
 
 class RegisterInteractorImpl : RegisterInteractor {

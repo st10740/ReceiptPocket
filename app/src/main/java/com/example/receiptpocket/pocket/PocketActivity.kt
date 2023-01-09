@@ -10,7 +10,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.receiptpocket.R
 import com.example.receiptpocket.pocket.account.AccountFragment
-import com.example.receiptpocket.pocket.qrscan.QrscanFragment
+import com.example.receiptpocket.pocket.qrscan.qrscan.QrscanFragment
 import com.example.receiptpocket.pocket.receipts.ReceiptsFragment
 import com.example.receiptpocket.pocket.win.WinFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -26,6 +26,7 @@ class PocketActivity : AppCompatActivity() {
 
         // Bottom Navigation View
         loadFragment(ReceiptsFragment())
+
         bottomNav = findViewById<BottomNavigationView>(R.id.nav_view)
         bottomNav.setOnItemSelectedListener {
             when(it.itemId){

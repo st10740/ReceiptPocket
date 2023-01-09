@@ -1,16 +1,25 @@
-package com.example.receiptpocket.pocket.qrscan
+package com.example.receiptpocket.pocket.qrscan.manualInput
 
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ProgressBar
 import androidx.appcompat.widget.Toolbar
 import androidx.room.Delete
 import com.example.receiptpocket.R
+import com.example.receiptpocket.Room.Receipt
 import com.example.receiptpocket.pocket.PocketActivity
+import com.example.receiptpocket.pocket.qrscan.manualInput.Presenters.ManualInputPresenter
+import com.example.receiptpocket.pocket.qrscan.manualInput.Presenters.ManualInputPresenterImpl
+import com.example.receiptpocket.pocket.qrscan.manualInput.Views.ManualInputView
+import com.example.receiptpocket.pocket.receipts.ReceiptsFragment
+import com.example.receiptpocket.prefs
 import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import java.time.Year
 
 // TODO: Rename parameter arguments, choose names that match
@@ -29,7 +38,7 @@ private const val DESCRIBES = "describes"
  * Use the [ManualInputFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ManualInputFragment : Fragment(), View.OnClickListener {
+class ManualInputFragment : Fragment(), View.OnClickListener, ManualInputView {
     // TODO: Rename and change types of parameters
     private var store: String? = null
     private var year: String? = null
@@ -44,14 +53,21 @@ class ManualInputFragment : Fragment(), View.OnClickListener {
     private lateinit var manualInputToolbar: Toolbar
     private lateinit var storeEditText: TextInputEditText
     private lateinit var yearEditText: TextInputEditText
+    private lateinit var yearTextInputLayout: TextInputLayout
     private lateinit var monthEditText: TextInputEditText
+    private lateinit var monthTextInputLayout: TextInputLayout
     private lateinit var dayEditText: TextInputEditText
+    private lateinit var dayTextInputLayout: TextInputLayout
     private lateinit var code1EditText: TextInputEditText
+    private lateinit var code1TextInputLayout: TextInputLayout
     private lateinit var code2EditText: TextInputEditText
+    private lateinit var code2TextInputLayout: TextInputLayout
     private lateinit var priceEditText: TextInputEditText
     private lateinit var describesEditText: TextInputEditText
     private lateinit var deleteBtn: Button
     private lateinit var updateBtn: Button
+    private lateinit var progressBar: ProgressBar
+    private lateinit var manualInputPresenter: ManualInputPresenter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -79,6 +95,9 @@ class ManualInputFragment : Fragment(), View.OnClickListener {
         setupToolbar()
         setupEditText()
 
+        deleteBtn.setOnClickListener(this)
+        updateBtn.setOnClickListener(this)
+
         return view
     }
 
@@ -86,14 +105,21 @@ class ManualInputFragment : Fragment(), View.OnClickListener {
         manualInputToolbar = view.findViewById(R.id.manual_input_toolbar)
         storeEditText = view.findViewById(R.id.store_name_edit_text)
         yearEditText = view.findViewById(R.id.year_edit_text)
+        yearTextInputLayout = view.findViewById(R.id.year_text_input_layout)
         monthEditText = view.findViewById(R.id.month_edit_text)
+        monthTextInputLayout = view.findViewById(R.id.month_text_input_layout)
         dayEditText = view.findViewById(R.id.day_edit_text)
+        dayTextInputLayout = view.findViewById(R.id.day_text_input_layout)
         code1EditText = view.findViewById(R.id.code1_edit_text)
+        code1TextInputLayout = view.findViewById(R.id.code1_text_input_layout)
         code2EditText = view.findViewById(R.id.code2_edit_text)
+        code2TextInputLayout = view.findViewById(R.id.code2_text_input_layout)
         priceEditText = view.findViewById(R.id.price_edit_text)
         describesEditText = view.findViewById(R.id.describes_edit_text)
         deleteBtn = view.findViewById(R.id.delete_btn)
         updateBtn = view.findViewById(R.id.save_btn)
+        progressBar = view.findViewById(R.id.manual_input_progress_bar)
+        manualInputPresenter = ManualInputPresenterImpl(this)
     }
 
     private fun setupToolbar(){
@@ -113,14 +139,67 @@ class ManualInputFragment : Fragment(), View.OnClickListener {
         if(describes != null) describesEditText.setText(describes) else describesEditText.setText("")
     }
 
+    private fun loadFragment(fragment: Fragment){
+        (activity as PocketActivity?)?.supportFragmentManager?.beginTransaction()
+            ?.replace(R.id.container,fragment)
+            ?.commit()
+    }
+
     override fun onClick(v: View?) {
         if (v != null) {
-            when(v.id){
-                R.id.delete_btn -> {  }
-                R.id.save_btn -> {  }
+            var sidStr = prefs.userNamePrefs!!
+            var storeStr = storeEditText.text.toString()
+            var yearStr = yearEditText.text.toString()
+            var monthStr = monthEditText.text.toString()
+            var dayStr = dayEditText.text.toString()
+            var code1Str = code1EditText.text.toString()
+            var code2Str = code2EditText.text.toString()
+            var priceStr = priceEditText.text.toString()
+            var describesStr = describesEditText.text.toString()
+
+
+            // 檢查必輸入的值是否有輸入
+            if(!yearStr.equals("") || !monthStr.equals("") || !dayStr.equals("")
+                || !code1Str.equals("") || !code2Str.equals("")){
+
+                val receipt = Receipt(sidStr, storeStr, yearStr.toInt(), monthStr.toInt(),
+                    dayStr.toInt(), code1Str, code2Str, priceStr.toInt(), describesStr)
+
+                when(v.id){
+                    R.id.delete_btn -> {
+                        manualInputPresenter.doUpdateItem(receipt, true)
+                    }
+                    R.id.save_btn -> {
+                            manualInputPresenter.doUpdateItem(receipt, false)
+                        }
+
+                }
             }
+
+            if(yearStr.equals("")) { yearTextInputLayout.error = " " }
+            if(monthStr.equals("")) { monthTextInputLayout.error = " " }
+            if(dayStr.equals("")) { dayTextInputLayout.error = " " }
+            if(code1Str.equals("")) { code1TextInputLayout.error = " " }
+            if(code2Str.equals("")) { code2TextInputLayout.error = " " }
         }
     }
+
+    override fun showProgress() {
+        progressBar.post {
+            progressBar.visibility = View.VISIBLE
+        }
+    }
+
+    override fun hideProgress() {
+        progressBar.post {
+            progressBar.visibility = View.GONE
+        }
+    }
+
+    override fun navigateToPocket() {
+        loadFragment(ReceiptsFragment())
+    }
+
 
     companion object {
         /**
@@ -149,6 +228,8 @@ class ManualInputFragment : Fragment(), View.OnClickListener {
                 }
             }
     }
+
+
 
 
 }
