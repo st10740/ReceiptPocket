@@ -159,8 +159,8 @@ class ManualInputFragment : Fragment(), View.OnClickListener, ManualInputView {
 
 
             // 檢查必輸入的值是否有輸入
-            if(!yearStr.equals("") || !monthStr.equals("") || !dayStr.equals("")
-                || !code1Str.equals("") || !code2Str.equals("")){
+            if(!yearStr.equals("") && !monthStr.equals("") && !dayStr.equals("")
+                && !code1Str.equals("") && !code2Str.equals("")){
 
                 val receipt = Receipt(sidStr, storeStr, yearStr.toInt(), monthStr.toInt(),
                     dayStr.toInt(), code1Str, code2Str, priceStr.toInt(), describesStr)

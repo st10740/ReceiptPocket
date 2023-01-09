@@ -7,85 +7,226 @@
     android:layout_height="match_parent"
     tools:context=".pocket.win.WinFragment">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/win_num_input_toolbar"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/win_num_input_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/small_margin"
-        android:layout_marginTop="@dimen/small_margin"
-        android:text="@string/fragment_title_win"
-        android:textSize="@dimen/mtitle_size"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/win_num_input_toolbar" />
-
-    <View
-        android:id="@+id/white_rect"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="@dimen/small_margin"
-        android:layout_marginEnd="@dimen/small_margin"
-        android:layout_marginTop="@dimen/lr_margin"
-        android:layout_marginBottom="@dimen/small_margin"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/win_num_input_title"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@drawable/white_rect"/>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_center"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/win_year_text_input_layout"
-        style="@style/MyTextInputLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/lr_margin"
-        android:layout_marginStart="@dimen/lr_margin"
-        android:layout_marginEnd="@dimen/lr_margin"
-        app:layout_constraintStart_toStartOf="@id/white_rect"
-        app:layout_constraintEnd_toStartOf="@id/guideline_center"
-        app:layout_constraintTop_toTopOf="@id/white_rect">
-        <com.google.android.material.textfield.TextInputEditText
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/text_input_edit_text_height"
-            android:hint="民國"/>
+            android:layout_height="wrap_content">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/win_num_input_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/win_month_text_input_layout"
-        style="@style/MyTextInputLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/lr_margin"
-        android:layout_marginEnd="@dimen/lr_margin"
-        app:layout_constraintStart_toStartOf="@id/guideline_center"
-        app:layout_constraintEnd_toEndOf="@id/white_rect"
-        app:layout_constraintTop_toTopOf="@id/win_year_text_input_layout"
-        app:layout_constraintBottom_toBottomOf="@id/win_year_text_input_layout">
+            <TextView
+                android:id="@+id/win_num_input_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/small_margin"
+                android:layout_marginTop="@dimen/small_margin"
+                android:text="@string/fragment_title_win"
+                android:textSize="@dimen/mtitle_size"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/win_num_input_toolbar" />
 
-        <AutoCompleteTextView
-            android:id="@+id/month_dropdown"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/text_input_edit_text_height"
-            android:hint="月份"
-            android:inputType="none"/>
+            <View
+                android:id="@+id/white_rect"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="@dimen/small_margin"
+                android:layout_marginEnd="@dimen/small_margin"
+                android:layout_marginTop="@dimen/lr_margin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/win_num_input_title"
+                app:layout_constraintBottom_toBottomOf="@id/check_btn"
+                android:background="@drawable/white_rect"/>
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_center"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/win_year_text_input_layout"
+                style="@style/MyTextInputLayout"
+                app:errorEnabled="true"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/lr_margin"
+                android:layout_marginStart="@dimen/lr_margin"
+                android:layout_marginEnd="@dimen/lr_margin"
+                app:layout_constraintStart_toStartOf="@id/white_rect"
+                app:layout_constraintEnd_toStartOf="@id/guideline_center"
+                app:layout_constraintTop_toTopOf="@id/white_rect">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/year_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/text_input_edit_text_height"
+                    android:hint="民國"
+                    android:textSize="@dimen/mtext_size"
+                    android:inputType="number"
+                    android:maxLines="1"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/win_month_text_input_layout"
+                style="@style/MyTextInputLayout"
+                app:errorEnabled="true"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/lr_margin"
+                app:layout_constraintStart_toStartOf="@id/guideline_center"
+                app:layout_constraintEnd_toEndOf="@id/white_rect"
+                app:layout_constraintTop_toTopOf="@id/win_year_text_input_layout"
+                app:layout_constraintBottom_toBottomOf="@id/win_year_text_input_layout">
+
+                <AutoCompleteTextView
+                    android:id="@+id/month_dropdown"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/text_input_edit_text_height"
+                    android:paddingLeft="16dp"
+                    android:textSize="@dimen/mtext_size"
+                    android:hint="月份"
+                    android:inputType="number"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/first_prize_text_input_layout"
+                style="@style/MyTextInputLayout"
+                app:errorEnabled="true"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/win_year_text_input_layout"
+                app:layout_constraintEnd_toEndOf="@id/win_month_text_input_layout"
+                app:layout_constraintTop_toBottomOf="@id/win_year_text_input_layout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/first_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/text_input_edit_text_height"
+                    android:hint="特別獎號碼"
+                    android:textSize="@dimen/mtext_size"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:maxLength="8"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/second_prize_text_input_layout"
+                style="@style/MyTextInputLayout"
+                app:errorEnabled="true"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/win_year_text_input_layout"
+                app:layout_constraintEnd_toEndOf="@id/win_month_text_input_layout"
+                app:layout_constraintTop_toBottomOf="@id/first_prize_text_input_layout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/second_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/text_input_edit_text_height"
+                    android:hint="特獎號碼"
+                    android:textSize="@dimen/mtext_size"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:maxLength="8"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/third_prize_text_input_layout"
+                style="@style/MyTextInputLayout"
+                app:errorEnabled="true"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/win_year_text_input_layout"
+                app:layout_constraintEnd_toEndOf="@id/win_month_text_input_layout"
+                app:layout_constraintTop_toBottomOf="@id/second_prize_text_input_layout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/third_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/text_input_edit_text_height"
+                    android:hint="頭獎第一組號碼"
+                    android:textSize="@dimen/mtext_size"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:maxLength="8"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/fourth_prize_text_input_layout"
+                style="@style/MyTextInputLayout"
+                app:errorEnabled="true"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/win_year_text_input_layout"
+                app:layout_constraintEnd_toEndOf="@id/win_month_text_input_layout"
+                app:layout_constraintTop_toBottomOf="@id/third_prize_text_input_layout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/four_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/text_input_edit_text_height"
+                    android:hint="頭獎第二組號碼"
+                    android:textSize="@dimen/mtext_size"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:maxLength="8"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/fifth_prize_text_input_layout"
+                style="@style/MyTextInputLayout"
+                app:errorEnabled="true"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/win_year_text_input_layout"
+                app:layout_constraintEnd_toEndOf="@id/win_month_text_input_layout"
+                app:layout_constraintTop_toBottomOf="@id/fourth_prize_text_input_layout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/fif_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/text_input_edit_text_height"
+                    android:hint="頭獎第三組號碼"
+                    android:textSize="@dimen/mtext_size"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:maxLength="8"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/check_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="兌獎"
+                android:textColor="@color/white"
+                android:textSize="@dimen/mtext_size"
+                app:layout_constraintStart_toStartOf="@id/win_year_text_input_layout"
+                app:layout_constraintEnd_toEndOf="@id/win_month_text_input_layout"
+                app:layout_constraintTop_toBottomOf="@id/fifth_prize_text_input_layout"
+                android:background="@drawable/brown_btn"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

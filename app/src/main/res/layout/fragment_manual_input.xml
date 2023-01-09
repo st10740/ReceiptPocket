@@ -7,352 +7,306 @@
     android:layout_height="match_parent"
     tools:context=".pocket.qrscan.manualInput.ManualInputFragment">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/manual_input_toolbar"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <TextView
-        android:id="@+id/receipts_detail_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/small_margin"
-        android:layout_marginTop="@dimen/small_margin"
-        android:text="@string/fragment_title_receipts_detail"
-        android:textSize="@dimen/mtitle_size"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/manual_input_toolbar" />
-
-
-    <View
-        android:id="@+id/white_rect"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="@dimen/small_margin"
-        android:layout_marginEnd="@dimen/small_margin"
-        android:layout_marginTop="@dimen/small_margin"
-        android:layout_marginBottom="@dimen/small_margin"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/receipts_detail_title"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@drawable/white_rect"/>
-
-
-    <!-- 商店名稱 -->
-    <TextView
-        android:id="@+id/store_name_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="商店名稱"
-        android:textColor="@color/black"
-        android:textSize="@dimen/mtext_size"
-        android:layout_marginStart="@dimen/lr_margin"
-        android:layout_marginTop="@dimen/large_margin"
-        app:layout_constraintStart_toStartOf="@id/white_rect"
-        app:layout_constraintTop_toTopOf="@id/white_rect"/>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/store_name_text_input_layout"
-        style="@style/MyTextInputLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:errorEnabled="true"
-        android:layout_marginStart="@dimen/lr_margin"
-        android:layout_marginEnd="@dimen/lr_margin"
-        app:layout_constraintStart_toEndOf="@id/store_name_textview"
-        app:layout_constraintEnd_toEndOf="@id/white_rect"
-        app:layout_constraintTop_toTopOf="@id/store_name_textview"
-        app:layout_constraintBottom_toBottomOf="@id/store_name_textview">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/store_name_edit_text"
+        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/text_input_edit_text_height"
-            android:inputType="text"
-            android:maxLines="1"
-            android:imeOptions="actionNext"
-            android:nextFocusForward="@id/year_text_input_layout"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/manual_input_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/receipts_detail_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/small_margin"
+                android:layout_marginTop="@dimen/small_margin"
+                android:text="@string/fragment_title_receipts_detail"
+                android:textSize="@dimen/mtitle_size"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/manual_input_toolbar" />
 
 
-    <!-- 消費日期 -->
-    <TextView
-        android:id="@+id/date_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="消費日期"
-        android:textColor="@color/black"
-        android:textSize="@dimen/mtext_size"
-        android:layout_marginTop="@dimen/large_margin"
-        app:layout_constraintStart_toStartOf="@id/store_name_textview"
-        app:layout_constraintTop_toBottomOf="@id/store_name_textview"/>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/year_text_input_layout"
-        style="@style/MyTextInputLayout"
-        android:layout_width="60dp"
-        android:layout_height="wrap_content"
-        app:errorEnabled="true"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintStart_toStartOf="@id/store_name_text_input_layout"
-        app:layout_constraintEnd_toStartOf="@id/ym_dash"
-        app:layout_constraintTop_toTopOf="@id/date_textview"
-        app:layout_constraintBottom_toBottomOf="@id/date_textview">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/year_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/text_input_edit_text_height"
-            android:inputType="number"
-            android:maxLines="1"
-            android:maxLength="3"
-            android:imeOptions="actionNext"
-            android:nextFocusForward="@id/month_text_input_layout"/>
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <TextView
-        android:id="@+id/ym_dash"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="-"
-        android:textColor="@color/black"
-        android:textSize="@dimen/mtext_size"
-        app:layout_constraintStart_toEndOf="@id/year_text_input_layout"
-        app:layout_constraintEnd_toStartOf="@id/month_text_input_layout"
-        app:layout_constraintTop_toTopOf="@id/year_text_input_layout"
-        app:layout_constraintBottom_toBottomOf="@id/year_text_input_layout"/>
+            <View
+                android:id="@+id/white_rect"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="@dimen/small_margin"
+                android:layout_marginEnd="@dimen/small_margin"
+                android:layout_marginTop="@dimen/small_margin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/receipts_detail_title"
+                app:layout_constraintBottom_toBottomOf="@id/delete_btn"
+                android:background="@drawable/white_rect"/>
 
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/month_text_input_layout"
-        style="@style/MyTextInputLayout"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        app:errorEnabled="true"
-        app:layout_constraintStart_toEndOf="@id/ym_dash"
-        app:layout_constraintEnd_toStartOf="@id/md_dash"
-        app:layout_constraintTop_toTopOf="@id/year_text_input_layout"
-        app:layout_constraintBottom_toBottomOf="@id/year_text_input_layout">
+            <!-- 商店名稱 -->
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/month_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/text_input_edit_text_height"
-            android:inputType="number"
-            android:maxLines="1"
-            android:maxLength="2"
-            android:imeOptions="actionNext"
-            android:nextFocusForward="@id/day_text_input_layout"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/store_name_text_input_layout"
+                style="@style/MyTextInputLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:errorEnabled="true"
+                android:layout_marginStart="@dimen/lr_margin"
+                android:layout_marginEnd="@dimen/lr_margin"
+                android:layout_marginTop="@dimen/lr_margin"
+                app:layout_constraintStart_toStartOf="@id/white_rect"
+                app:layout_constraintEnd_toEndOf="@id/white_rect"
+                app:layout_constraintTop_toTopOf="@id/white_rect">
 
-
-    <TextView
-        android:id="@+id/md_dash"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="-"
-        android:textColor="@color/black"
-        android:textSize="@dimen/mtext_size"
-        app:layout_constraintStart_toEndOf="@id/month_text_input_layout"
-        app:layout_constraintEnd_toStartOf="@id/day_text_input_layout"
-        app:layout_constraintTop_toTopOf="@id/year_text_input_layout"
-        app:layout_constraintBottom_toBottomOf="@id/year_text_input_layout"/>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/store_name_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/text_input_edit_text_height"
+                    android:hint="商店名稱"
+                    android:inputType="text"
+                    android:maxLines="1"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/day_text_input_layout"
-        style="@style/MyTextInputLayout"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        app:errorEnabled="true"
-        app:layout_constraintStart_toEndOf="@id/md_dash"
-        app:layout_constraintEnd_toEndOf="@id/store_name_text_input_layout"
-        app:layout_constraintTop_toTopOf="@id/year_text_input_layout"
-        app:layout_constraintBottom_toBottomOf="@id/year_text_input_layout">
+            <!-- 消費日期 -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/year_text_input_layout"
+                style="@style/MyTextInputLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:errorEnabled="true"
+                android:layout_marginEnd="@dimen/small_margin"
+                app:layout_constraintStart_toStartOf="@id/store_name_text_input_layout"
+                app:layout_constraintEnd_toStartOf="@id/ym_guideline"
+                app:layout_constraintTop_toBottomOf="@id/store_name_text_input_layout">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/day_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/text_input_edit_text_height"
-            android:inputType="number"
-            android:maxLines="1"
-            android:maxLength="2"
-            android:imeOptions="actionNext"
-            android:nextFocusForward="@id/code1_text_input_layout"/>
-    </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/year_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/text_input_edit_text_height"
+                    android:inputType="number"
+                    android:hint="民國"
+                    android:maxLines="1"
+                    android:maxLength="3"
+                    android:imeOptions="actionNext"
+                    android:nextFocusForward="@id/month_text_input_layout"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
-
-    <!-- 發票號碼 -->
-    <TextView
-        android:id="@+id/code_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="發票號碼"
-        android:textSize="@dimen/mtext_size"
-        android:textColor="@color/black"
-        android:layout_marginTop="@dimen/large_margin"
-        app:layout_constraintStart_toStartOf="@id/date_textview"
-        app:layout_constraintTop_toBottomOf="@id/date_textview"/>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/code1_text_input_layout"
-        style="@style/MyTextInputLayout"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        app:errorEnabled="true"
-        app:layout_constraintStart_toStartOf="@id/store_name_text_input_layout"
-        app:layout_constraintEnd_toStartOf="@id/code_dash"
-        app:layout_constraintTop_toTopOf="@id/code_textview"
-        app:layout_constraintBottom_toBottomOf="@id/code_textview">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/code1_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/text_input_edit_text_height"
-            android:inputType="textCapCharacters"
-            android:maxLines="1"
-            android:maxLength="2"
-            android:imeOptions="actionNext"
-            android:nextFocusForward="@id/code2_text_input_layout"/>
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <TextView
-        android:id="@+id/code_dash"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="-"
-        android:textSize="@dimen/mtext_size"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toEndOf="@id/code1_text_input_layout"
-        app:layout_constraintEnd_toStartOf="@id/code2_text_input_layout"
-        app:layout_constraintTop_toTopOf="@id/code1_text_input_layout"
-        app:layout_constraintBottom_toBottomOf="@id/code1_text_input_layout"/>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/code2_text_input_layout"
-        style="@style/MyTextInputLayout"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        app:errorEnabled="true"
-        app:layout_constraintStart_toEndOf="@id/code_dash"
-        app:layout_constraintEnd_toEndOf="@id/day_text_input_layout"
-        app:layout_constraintTop_toTopOf="@id/code1_text_input_layout"
-        app:layout_constraintBottom_toBottomOf="@id/code1_text_input_layout">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/code2_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/text_input_edit_text_height"
-            android:inputType="number"
-            android:maxLines="1"
-            android:maxLength="8"
-            android:imeOptions="actionNext"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/ym_guideline"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                android:layout_marginStart="@dimen/lr_margin"
+                android:layout_marginEnd="@dimen/lr_margin"
+                app:layout_constraintGuide_percent="0.4"
+                app:layout_constraintStart_toStartOf="@id/white_rect"
+                app:layout_constraintEnd_toEndOf="@id/white_rect"/>
 
 
-    <!-- 消費金額 -->
-    <TextView
-        android:id="@+id/price_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="消費金額"
-        android:textColor="@color/black"
-        android:textSize="@dimen/mtext_size"
-        android:layout_marginTop="@dimen/large_margin"
-        app:layout_constraintStart_toStartOf="@id/code_textview"
-        app:layout_constraintTop_toBottomOf="@id/code_textview"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/month_text_input_layout"
+                style="@style/MyTextInputLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:errorEnabled="true"
+                android:layout_marginStart="@dimen/small_margin"
+                android:layout_marginEnd="@dimen/small_margin"
+                app:layout_constraintStart_toEndOf="@id/ym_guideline"
+                app:layout_constraintEnd_toStartOf="@id/md_guideline"
+                app:layout_constraintTop_toTopOf="@id/year_text_input_layout"
+                app:layout_constraintBottom_toBottomOf="@id/year_text_input_layout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/month_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/text_input_edit_text_height"
+                    android:inputType="number"
+                    android:hint="月"
+                    android:maxLines="1"
+                    android:maxLength="2"
+                    android:imeOptions="actionNext"
+                    android:nextFocusForward="@id/day_text_input_layout"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/price_text_input_layout"
-        style="@style/MyTextInputLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:errorEnabled="true"
-        app:layout_constraintStart_toStartOf="@id/store_name_text_input_layout"
-        app:layout_constraintEnd_toEndOf="@id/store_name_text_input_layout"
-        app:layout_constraintTop_toTopOf="@id/price_textview"
-        app:layout_constraintBottom_toBottomOf="@id/price_textview">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/price_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/text_input_edit_text_height"
-            android:inputType="number"
-            android:maxLines="1" />
-    </com.google.android.material.textfield.TextInputLayout>
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/md_guideline"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                android:layout_marginStart="@dimen/lr_margin"
+                android:layout_marginEnd="@dimen/lr_margin"
+                app:layout_constraintGuide_percent="0.68"
+                app:layout_constraintStart_toStartOf="@id/white_rect"
+                app:layout_constraintEnd_toEndOf="@id/white_rect"/>
 
 
-    <!--商品明細-->
-    <TextView
-        android:id="@+id/product_detail_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="商品明細"
-        android:textColor="@color/black"
-        android:textSize="@dimen/mtext_size"
-        android:layout_marginTop="@dimen/large_margin"
-        app:layout_constraintStart_toStartOf="@id/price_textview"
-        app:layout_constraintTop_toBottomOf="@id/price_textview"/>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/day_text_input_layout"
+                style="@style/MyTextInputLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:errorEnabled="true"
+                android:layout_marginStart="@dimen/small_margin"
+                app:layout_constraintStart_toEndOf="@id/md_guideline"
+                app:layout_constraintEnd_toEndOf="@id/store_name_text_input_layout"
+                app:layout_constraintTop_toTopOf="@id/year_text_input_layout"
+                app:layout_constraintBottom_toBottomOf="@id/year_text_input_layout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/day_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/text_input_edit_text_height"
+                    android:inputType="number"
+                    android:hint="日"
+                    android:maxLines="1"
+                    android:maxLength="2"
+                    android:imeOptions="actionNext"
+                    android:nextFocusForward="@id/code1_text_input_layout"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/product_detail_text_input_layout"
-        style="@style/MyTextInputLayout"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="@dimen/small_margin"
-        android:layout_marginBottom="@dimen/lr_margin"
-        app:errorEnabled="true"
-        app:layout_constraintStart_toStartOf="@id/product_detail_textview"
-        app:layout_constraintEnd_toEndOf="@id/store_name_text_input_layout"
-        app:layout_constraintTop_toBottomOf="@id/delete_btn"
-        app:layout_constraintBottom_toBottomOf="@id/white_rect">
+            <!-- 發票號碼 -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/code1_text_input_layout"
+                style="@style/MyTextInputLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:errorEnabled="true"
+                android:layout_marginEnd="@dimen/small_margin"
+                app:layout_constraintStart_toStartOf="@id/store_name_text_input_layout"
+                app:layout_constraintEnd_toStartOf="@id/code12_guideline"
+                app:layout_constraintTop_toBottomOf="@id/year_text_input_layout">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/describes_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="top"
-            android:inputType="text|textMultiLine"/>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/code1_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/text_input_edit_text_height"
+                    android:inputType="textCapCharacters"
+                    android:maxLines="1"
+                    android:maxLength="2"
+                    android:hint="發票前兩碼"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/code12_guideline"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                android:layout_marginStart="@dimen/lr_margin"
+                android:layout_marginEnd="@dimen/lr_margin"
+                app:layout_constraintGuide_percent="0.35"
+                app:layout_constraintStart_toStartOf="@id/white_rect"
+                app:layout_constraintEnd_toEndOf="@id/white_rect"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/code2_text_input_layout"
+                style="@style/MyTextInputLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:errorEnabled="true"
+                android:layout_marginStart="@dimen/small_margin"
+                app:layout_constraintStart_toStartOf="@id/code12_guideline"
+                app:layout_constraintEnd_toEndOf="@id/store_name_text_input_layout"
+                app:layout_constraintTop_toTopOf="@id/code1_text_input_layout"
+                app:layout_constraintBottom_toBottomOf="@id/code1_text_input_layout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/code2_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/text_input_edit_text_height"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:maxLength="8"
+                    android:hint="發票後八碼"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
 
-    <!-- 儲存和刪除按鈕 -->
-    <Button
-        android:id="@+id/delete_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="刪除"
-        android:textColor="@color/white"
-        android:textSize="@dimen/mtext_size"
-        android:background="@drawable/red_btn"
-        android:layout_marginEnd="@dimen/lr_margin"
-        android:minHeight="40dp"
-        android:minWidth="70dp"
-        app:layout_constraintEnd_toStartOf="@id/save_btn"
-        app:layout_constraintTop_toTopOf="@id/product_detail_textview"
-        app:layout_constraintBottom_toBottomOf="@id/product_detail_textview" />
+            <!-- 消費金額 -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/price_text_input_layout"
+                style="@style/MyTextInputLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:errorEnabled="true"
+                app:layout_constraintStart_toStartOf="@id/store_name_text_input_layout"
+                app:layout_constraintEnd_toEndOf="@id/store_name_text_input_layout"
+                app:layout_constraintTop_toBottomOf="@id/code1_text_input_layout">
 
-    <Button
-        android:id="@+id/save_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="儲存"
-        android:textColor="@color/white"
-        android:textSize="@dimen/mtext_size"
-        android:background="@drawable/brown_btn"
-        android:minHeight="40dp"
-        android:minWidth="70dp"
-        app:layout_constraintEnd_toEndOf="@id/store_name_text_input_layout"
-        app:layout_constraintTop_toTopOf="@id/product_detail_textview"
-        app:layout_constraintBottom_toBottomOf="@id/product_detail_textview"/>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/price_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/text_input_edit_text_height"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:hint="消費金額"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
+
+            <!--商品明細-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/product_detail_text_input_layout"
+                style="@style/MyTextInputLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_margin"
+                android:layout_marginBottom="@dimen/lr_margin"
+                app:errorEnabled="true"
+                app:layout_constraintStart_toStartOf="@id/store_name_text_input_layout"
+                app:layout_constraintEnd_toEndOf="@id/store_name_text_input_layout"
+                app:layout_constraintTop_toBottomOf="@id/price_text_input_layout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/describes_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="192dp"
+                    android:gravity="top"
+                    android:hint="商品明細"
+                    android:inputType="text|textMultiLine"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <!-- 儲存和刪除按鈕 -->
+            <Button
+                android:id="@+id/delete_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="刪除"
+                android:textColor="@color/white"
+                android:textSize="@dimen/mtext_size"
+                android:background="@drawable/red_btn"
+                android:layout_marginEnd="@dimen/large_margin"
+                android:minHeight="40dp"
+                android:minWidth="70dp"
+                app:layout_constraintEnd_toStartOf="@id/save_btn"
+                app:layout_constraintTop_toBottomOf="@id/product_detail_text_input_layout"/>
+
+            <Button
+                android:id="@+id/save_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="儲存"
+                android:textColor="@color/white"
+                android:textSize="@dimen/mtext_size"
+                android:background="@drawable/brown_btn"
+                android:minHeight="40dp"
+                android:minWidth="70dp"
+                app:layout_constraintEnd_toEndOf="@id/store_name_text_input_layout"
+                app:layout_constraintTop_toTopOf="@id/delete_btn"
+                app:layout_constraintBottom_toBottomOf="@id/delete_btn"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
 
     <ProgressBar

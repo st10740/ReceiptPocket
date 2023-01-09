@@ -112,7 +112,6 @@ class ReceiptsFragment : Fragment(), View.OnClickListener, ReceiptView,
     private fun setRecyclerView(){
         recyclerView.adapter = recyclerAdapter
         recyclerView.layoutManager = LinearLayoutManager(App.appContext)
-
     }
 
 

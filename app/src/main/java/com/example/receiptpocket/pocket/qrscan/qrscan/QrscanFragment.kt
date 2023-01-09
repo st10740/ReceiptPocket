@@ -27,7 +27,6 @@ class QrscanFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-    private lateinit var TestBtn: Button
     private lateinit var manualInputBtn: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,7 +45,7 @@ class QrscanFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_qrscan, container, false)
 
         bindingViews(view)
-        testPrefsBtn()
+
         manualInputBtn.setOnClickListener { loadFragment(ManualInputFragment()) }
 
 
@@ -54,18 +53,10 @@ class QrscanFragment : Fragment() {
     }
 
     private fun bindingViews(view: View){
-        TestBtn = view.findViewById(R.id.test_prefs_btn)
         manualInputBtn = view.findViewById(R.id.manual_input_barbtn)
     }
 
-    private fun testPrefsBtn(){
-        TestBtn.setOnClickListener {
-//            prefs.yearPref = 110
-//            prefs.monthPref = 6
-            Log.i("Test", "year: ${prefs.yearPref}")
-            Log.i("Test", "month: ${prefs.monthPref}")
-        }
-    }
+
 
     private fun loadFragment(fragment: Fragment){
         (activity as PocketActivity?)?.supportFragmentManager?.beginTransaction()

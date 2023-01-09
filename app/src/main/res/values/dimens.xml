@@ -4,6 +4,7 @@
     <dimen name="rect_small_radius">10dp</dimen>
 
     <dimen name="ltitle_size">50sp</dimen>
+    <dimen name="mltitle_size">40sp</dimen>
     <dimen name="mtitle_size">30sp</dimen>
 
     <dimen name="ltext_size">20sp</dimen>

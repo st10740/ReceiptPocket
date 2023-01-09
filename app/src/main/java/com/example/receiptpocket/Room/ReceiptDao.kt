@@ -20,9 +20,14 @@ interface ReceiptDao {
     @Query("SELECT * FROM Receipt WHERE sid= :id AND year= :year AND month= :month AND day= :day")
     fun findByDate(id: String, year: Int, month: Int, day: Int): List<Receipt>
 
+    @Query("SELECT * FROM Receipt WHERE year= :year AND (month= :month1 OR month= :month2) AND code_2 LIKE :str")
+    fun getAllMatchItems(year: Int, month1: Int, month2: Int, str: String): List<Receipt>
+
+    @Query("SELECT * FROM Receipt WHERE year= :year AND (month= :month1 OR month= :month2) AND code_2 LIKE '%' || :lastThreeStr")
+    fun getThreeMatchItems(year: Int, month1: Int, month2: Int, lastThreeStr: String): List<Receipt>
+
     @Query("DELETE FROM Receipt")
     fun deleteAll()
-
 
     @Delete
     fun delete(item: Receipt)

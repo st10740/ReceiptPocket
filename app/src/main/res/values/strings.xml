@@ -22,7 +22,7 @@
     <string name="blank_name_error">暱稱不可為空</string>
     <string name="blank_password_error">密碼不可為空</string>
     <string name="repeated_username_error">帳號已存在</string>
-    
+
     <string name="ryear_error">年份不可為空</string>
     <string name="rmonth_error">月份不可為空</string>
     <string name="rday_error">日期不可為空</string>
