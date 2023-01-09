@@ -6,12 +6,12 @@ import java.sql.SQLException
 
 class MysqlCon {
 
-    private val mysql_ip: String = "db4free.net" //"192.168.2.26"
+    private val mysql_ip: String = "192.168.2.26"  //"db4free.net"
     private val mysql_port: Int = 3306
-    private val db_name: String = "receipt_db"
+    private val db_name: String = "receipt_dp"
     private val url: String = "jdbc:mysql://${mysql_ip}:${mysql_port}/${db_name}" //?useSSL=false&allowPublicKeyRetrieval=true"
-    private val db_user: String =  "receipt_pocket"  //"root"
-    private val db_password: String = "test.mysql"  //"root123"
+    private val db_user: String = "ivy"  //"receipt_pocket"
+    private val db_password: String =  "123"  //"test.mysql"
 
     fun run(){
         // 加載driver
@@ -78,7 +78,7 @@ class MysqlCon {
         val receiptList = mutableListOf<ReceiptModel>()
         try {
             val con = DriverManager.getConnection(url, db_user, db_password)
-            val sql = "SELECT * FROM Receipt WHERE id='${id_}'"
+            val sql = "SELECT * FROM Receipt WHERE sid='${id_}'"
             val st = con.createStatement()
             val rs = st.executeQuery(sql)
 
@@ -106,17 +106,20 @@ class MysqlCon {
 
     fun insertReceipts(receiptsList: MutableList<ReceiptModel>){
         try {
-            val sql = ""
-            for(item in receiptsList){
-                sql.plus("INSERT INTO Receipt(sid, store, year, month, day, code_1, code_2, price, describes) " +
-                        "VALUES('${item.sid}', '${item.store}', ${item.year}, ${item.month}, ${item.day}, " +
-                        "'${item.code_1}', '${item.code_2}', ${item.price}, '${item.describes}'); ")
-            }
 
             val con = DriverManager.getConnection(url, db_user, db_password)
             val st = con.createStatement()
-            st.executeUpdate(sql)
+
+            for(item in receiptsList){
+                val sql = "INSERT INTO Receipt(sid, store, year, month, day, code_1, code_2, price, describes) " +
+                        "VALUES('${item.sid}', '${item.store}', ${item.year}, ${item.month}, ${item.day}, " +
+                        "'${item.code_1}', '${item.code_2}', ${item.price}, '${item.describes}') "
+
+                st.executeUpdate(sql)
+
+            }
             st.close()
+
 
         } catch (e: SQLException){
             e.printStackTrace()
@@ -126,7 +129,7 @@ class MysqlCon {
     fun deleteReceiptsById(id_: String){
         try {
             val con = DriverManager.getConnection(url, db_user, db_password)
-            val sql = "DELETE FROM Receipt WHERE id= '${id_}'"
+            val sql = "DELETE FROM Receipt WHERE sid= '${id_}'"
             val st = con.createStatement()
             st.executeUpdate(sql)
 
@@ -134,5 +137,7 @@ class MysqlCon {
             e.printStackTrace()
         }
     }
+
+
 
 }

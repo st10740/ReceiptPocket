@@ -1,5 +1,6 @@
 package com.example.receiptpocket.login.Interactors
 
+import android.util.Log
 import com.example.receiptpocket.App
 import com.example.receiptpocket.MysqlCon
 import com.example.receiptpocket.Room.Receipt
@@ -28,10 +29,14 @@ class LoginInteractorImpl : LoginInteractor {
 
                     receiptDao.deleteAll() // 先刪除本機資料庫Receipt Table中的全部rows
 
+                    println("#######################")
                     for(item in receiptsList){ // 再把遠端資料庫的資料全部insert到本機資料庫Receipt Table
                         receiptDao.insert(Receipt(sid = item.sid, store = item.store, year = item.year,
                         month = item.month, day = item.day, code_1 = item.code_1, code_2 = item.code_2,
                         price = item.price, describes = item.describes))
+
+                        println("@@@@@@@@@@@@@@@@@")
+                        println(item)
                     }
 
                     prefs.userNamePrefs = dataList[0]

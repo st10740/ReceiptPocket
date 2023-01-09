@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ProgressBar
-import com.example.receiptpocket.Prefs
 import com.example.receiptpocket.R
 import com.example.receiptpocket.login.MainActivity
 import com.example.receiptpocket.login.Presenters.LoginPresenter

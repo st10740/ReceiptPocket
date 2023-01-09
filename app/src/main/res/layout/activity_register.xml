@@ -48,7 +48,7 @@
         android:layout_marginTop="36dp"
         android:text="建立會員"
         android:textColor="@color/black"
-        android:textSize="@dimen/otext_size"
+        android:textSize="@dimen/mtext_size"
         app:layout_constraintEnd_toEndOf="@+id/register_rect"
         app:layout_constraintStart_toStartOf="@+id/register_rect"
         app:layout_constraintTop_toTopOf="@+id/register_rect" />
@@ -124,7 +124,7 @@
         android:background="@drawable/orange_btn"
         android:text="註冊"
         android:textColor="@color/white"
-        android:textSize="@dimen/otext_size"
+        android:textSize="@dimen/mtext_size"
         app:layout_constraintEnd_toEndOf="@+id/register_rect"
         app:layout_constraintStart_toStartOf="@+id/register_rect"
         app:layout_constraintTop_toBottomOf="@+id/pw_text_input_layout"

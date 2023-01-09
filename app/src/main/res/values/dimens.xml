@@ -5,8 +5,10 @@
 
     <dimen name="ltitle_size">50sp</dimen>
     <dimen name="mtitle_size">30sp</dimen>
-    <dimen name="otext_size">18sp</dimen>
-    <dimen name="smalltext_size">15sp</dimen>
+
+    <dimen name="ltext_size">20sp</dimen>
+    <dimen name="mtext_size">18sp</dimen>
+    <dimen name="stext_size">15sp</dimen>
 
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="large_margin">36dp</dimen>

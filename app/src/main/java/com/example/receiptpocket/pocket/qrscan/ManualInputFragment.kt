@@ -5,32 +5,66 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.appcompat.widget.Toolbar
+import androidx.room.Delete
 import com.example.receiptpocket.R
 import com.example.receiptpocket.pocket.PocketActivity
+import com.google.android.material.textfield.TextInputEditText
+import java.time.Year
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+private const val STORE = "store"
+private const val YEAR = "year"
+private const val MONTH = "month"
+private const val DAY = "day"
+private const val CODE1 = "code_1"
+private const val CODE2 = "code_2"
+private const val PRICE = "price"
+private const val DESCRIBES = "describes"
 
 /**
  * A simple [Fragment] subclass.
  * Use the [ManualInputFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ManualInputFragment : Fragment() {
+class ManualInputFragment : Fragment(), View.OnClickListener {
     // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var store: String? = null
+    private var year: String? = null
+    private var month: String? = null
+    private var day: String? = null
+    private var code_1: String? = null
+    private var code_2: String? = null
+    private var price: String? = null
+    private  var describes: String? = null
+
 
     private lateinit var manualInputToolbar: Toolbar
+    private lateinit var storeEditText: TextInputEditText
+    private lateinit var yearEditText: TextInputEditText
+    private lateinit var monthEditText: TextInputEditText
+    private lateinit var dayEditText: TextInputEditText
+    private lateinit var code1EditText: TextInputEditText
+    private lateinit var code2EditText: TextInputEditText
+    private lateinit var priceEditText: TextInputEditText
+    private lateinit var describesEditText: TextInputEditText
+    private lateinit var deleteBtn: Button
+    private lateinit var updateBtn: Button
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            store = it.getString(STORE)
+            year = it.getString(YEAR)
+            month = it.getString(MONTH)
+            day = it.getString(DAY)
+            code_1 = it.getString(CODE1)
+            code_2 = it.getString(CODE2)
+            price = it.getString(PRICE)
+            describes = it.getString(DESCRIBES)
         }
     }
 
@@ -43,19 +77,49 @@ class ManualInputFragment : Fragment() {
 
         bindingViews(view)
         setupToolbar()
-
+        setupEditText()
 
         return view
     }
 
     private fun bindingViews(view: View){
         manualInputToolbar = view.findViewById(R.id.manual_input_toolbar)
+        storeEditText = view.findViewById(R.id.store_name_edit_text)
+        yearEditText = view.findViewById(R.id.year_edit_text)
+        monthEditText = view.findViewById(R.id.month_edit_text)
+        dayEditText = view.findViewById(R.id.day_edit_text)
+        code1EditText = view.findViewById(R.id.code1_edit_text)
+        code2EditText = view.findViewById(R.id.code2_edit_text)
+        priceEditText = view.findViewById(R.id.price_edit_text)
+        describesEditText = view.findViewById(R.id.describes_edit_text)
+        deleteBtn = view.findViewById(R.id.delete_btn)
+        updateBtn = view.findViewById(R.id.save_btn)
     }
 
     private fun setupToolbar(){
         manualInputToolbar.setNavigationIcon(R.drawable.ic_arrow_back)
         manualInputToolbar.setNavigationOnClickListener { (activity as PocketActivity).onBackPressed() }
 //        (activity as PocketActivity)?.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    private fun setupEditText(){
+        if(store != null) storeEditText.setText(store) else storeEditText.setText("")
+        if(year != null) yearEditText.setText(year) else yearEditText.setText("")
+        if(month != null) monthEditText.setText(month) else monthEditText.setText("")
+        if(day != null) dayEditText.setText(day) else dayEditText.setText("")
+        if(code_1 != null) code1EditText.setText(code_1) else code1EditText.setText("")
+        if(code_2 != null) code2EditText.setText(code_2) else code2EditText.setText("")
+        if(price != null) priceEditText.setText(price) else priceEditText.setText("")
+        if(describes != null) describesEditText.setText(describes) else describesEditText.setText("")
+    }
+
+    override fun onClick(v: View?) {
+        if (v != null) {
+            when(v.id){
+                R.id.delete_btn -> {  }
+                R.id.save_btn -> {  }
+            }
+        }
     }
 
     companion object {
@@ -69,12 +133,22 @@ class ManualInputFragment : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(store: String, year: String, month: String, day: String,
+                        code_1: String, code_2: String, price: String, describes: String) =
+
             ManualInputFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                    putString(STORE, store)
+                    putString(YEAR, year)
+                    putString(MONTH, month)
+                    putString(DAY, day)
+                    putString(CODE1, code_1)
+                    putString(CODE2, code_2)
+                    putString(PRICE, price)
+                    putString(DESCRIBES, describes)
                 }
             }
     }
+
+
 }

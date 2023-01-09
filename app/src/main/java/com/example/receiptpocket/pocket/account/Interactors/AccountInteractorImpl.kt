@@ -11,7 +11,6 @@ import com.example.receiptpocket.prefs
 class AccountInteractorImpl : AccountInteractor {
     override fun logout(listener: OnLogoutFinishedListener) {
         Thread{
-            Log.v("DB", "enter thread!")
 
             val con = MysqlCon()
             con.run()
@@ -19,24 +18,23 @@ class AccountInteractorImpl : AccountInteractor {
             // 刪除遠端資料庫目前登入者的所有Receipt資料
             con.deleteReceiptsById(prefs.userNamePrefs!!)
 
-            Log.v("DB", "finish delete all!")
-
             val receiptDao = ReceiptDatabase.getDatabase(App.appContext).receiptDao()
             val curUserReceipts = receiptDao.getAll(prefs.userNamePrefs!!)
             val receiptList = mutableListOf<ReceiptModel>()
 
-            Log.v("DB", "finish get all!")
-
+            println("get all finished")
             for(item in curUserReceipts){
+                println("enter item: ${item}")
                 receiptList.add(
                     ReceiptModel(item.sid, item.store, item.year, item.month, item.day,
                 item.code_1, item.code_2, item.price, item.describes)
                 )
             }
 
+            println(receiptList)
+
             con.insertReceipts(receiptList)
 
-            Log.v("DB", "finish insert all!")
 
             // SharedPreference 的 username, name, password 歸零
             prefs.userNamePrefs = ""

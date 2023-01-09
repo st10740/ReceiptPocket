@@ -1,4 +1,4 @@
-package com.example.receiptpocket
+package com.example.receiptpocket.pocket.receipts
 
 import android.content.Context
 import android.util.AttributeSet
@@ -7,9 +7,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
-import org.w3c.dom.Attr
+import com.example.receiptpocket.R
 import java.text.SimpleDateFormat
-import java.time.LocalDate
 import java.util.*
 
 class MonthPicker: LinearLayout {
@@ -28,6 +27,14 @@ class MonthPicker: LinearLayout {
     private var curYear: Int = 0
     private var curMonth: Int = 0
 
+
+    // 為了讓 Fragment 或 Activity 知道內部按鈕被按所定義的 interface
+    interface OnAddOrMinusButtonClickListener{
+        fun onAddOrMinusBtnClick()
+    }
+
+    private var mOnAddOrMinusButtonClickListener: OnAddOrMinusButtonClickListener? = null
+
     constructor(context: Context): super(context){
         init(context, null)
     }
@@ -39,6 +46,7 @@ class MonthPicker: LinearLayout {
     constructor(context: Context, attrs: AttributeSet, defStyle: Int): super(context, attrs) {
         init(context, attrs)
     }
+
 
     private fun init(context: Context, attrs: AttributeSet?){
         View.inflate(context, R.layout.month_picker, this)
@@ -61,7 +69,8 @@ class MonthPicker: LinearLayout {
 
 
         if(attrs != null){
-            val attributes = context.theme.obtainStyledAttributes(attrs, R.styleable.MonthPicker, 0, 0)
+            val attributes = context.theme.obtainStyledAttributes(attrs,
+                R.styleable.MonthPicker, 0, 0)
 
             // 從Layout上取預設值
             this.defaultYear = attributes.getInt(R.styleable.MonthPicker_default_year, this.defaultYear)
@@ -78,10 +87,22 @@ class MonthPicker: LinearLayout {
             this.curMonth = defaultMonth
         }
 
-        this.addBtn.setOnClickListener { addYearMonth() }
 
-        this.minusBtn.setOnClickListener { minusYearMonth() }
 
+        this.addBtn.setOnClickListener {
+            addYearMonth()
+            mOnAddOrMinusButtonClickListener?.onAddOrMinusBtnClick()
+        }
+
+        this.minusBtn.setOnClickListener {
+            minusYearMonth()
+            mOnAddOrMinusButtonClickListener?.onAddOrMinusBtnClick()
+        }
+
+    }
+
+    fun setOnAddOrMinusCLickListener(listener: OnAddOrMinusButtonClickListener){
+        mOnAddOrMinusButtonClickListener = listener
     }
 
     fun setMinYear(value: Int){ this.minYear = value }

@@ -6,11 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ProgressBar
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import com.example.receiptpocket.MonthPicker
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.receiptpocket.App
 import com.example.receiptpocket.R
 import com.example.receiptpocket.pocket.PocketActivity
+import com.example.receiptpocket.pocket.receipts.Presenters.ReceiptPresenter
+import com.example.receiptpocket.pocket.receipts.Presenters.ReceiptPresenterImpl
+import com.example.receiptpocket.pocket.receipts.Views.ReceiptView
 import com.example.receiptpocket.prefs
 
 // TODO: Rename parameter arguments, choose names that match
@@ -23,7 +29,8 @@ private const val ARG_PARAM2 = "param2"
  * Use the [ReceiptsFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ReceiptsFragment : Fragment(), View.OnClickListener {
+class ReceiptsFragment : Fragment(), View.OnClickListener, ReceiptView,
+    ReceiptRecyclerAdapter.OnItemClickListener, MonthPicker.OnAddOrMinusButtonClickListener {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -32,6 +39,10 @@ class ReceiptsFragment : Fragment(), View.OnClickListener {
     private lateinit var dateBtn: Button
     private lateinit var analyzeBtn: Button
     private lateinit var monthPicker: MonthPicker
+    private lateinit var recyclerAdapter: ReceiptRecyclerAdapter
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var progressBar: ProgressBar
+    private lateinit var receiptPresenter: ReceiptPresenter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,11 +63,14 @@ class ReceiptsFragment : Fragment(), View.OnClickListener {
         // binding view
         bindingViews(view)
 
+        setPresenter()
         setUpToolbar()
         setMonthPicker()
+        setRecyclerView()
 
         dateBtn.setOnClickListener(this)
         analyzeBtn.setOnClickListener(this)
+
 
         return view
     }
@@ -66,8 +80,14 @@ class ReceiptsFragment : Fragment(), View.OnClickListener {
         dateBtn = view.findViewById(R.id.date_barbtn)
         analyzeBtn = view.findViewById(R.id.analyze_barbtn)
         monthPicker = view.findViewById(R.id.month_picker)
+        recyclerAdapter = ReceiptRecyclerAdapter(this)
+        recyclerView = view.findViewById(R.id.receipts_month_recyclerview)
+        progressBar = view.findViewById(R.id.receipt_progress_bar)
+        receiptPresenter = ReceiptPresenterImpl(this)
+    }
 
-
+    private fun setPresenter(){
+        receiptPresenter.loadItems(monthPicker.getCurYear(), monthPicker.getCurMonth())
     }
 
     private fun setUpToolbar(){
@@ -79,6 +99,13 @@ class ReceiptsFragment : Fragment(), View.OnClickListener {
     private fun setMonthPicker(){
         monthPicker.setMinYear(prefs.yearPref)
         monthPicker.setMinMonth(prefs.monthPref)
+        monthPicker.setOnAddOrMinusCLickListener(this)
+    }
+
+    private fun setRecyclerView(){
+        recyclerView.adapter = recyclerAdapter
+        recyclerView.layoutManager = LinearLayoutManager(App.appContext)
+
     }
 
 
@@ -92,9 +119,40 @@ class ReceiptsFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         Log.i("click", "enter onClick")
         when(v?.id){
-            R.id.date_barbtn -> { Log.i("click","click date"); loadFragment(ReceiptsDateFragment()) }
-            R.id.analyze_barbtn -> { Log.i("click","click analyze") }
+            R.id.date_barbtn -> { loadFragment(ReceiptsDateFragment()) }
+            R.id.analyze_barbtn -> {  }
         }
+    }
+
+
+    override fun showProgressBar() {
+        progressBar.post {
+            progressBar.visibility = View.VISIBLE
+        }
+    }
+
+    override fun hindProgressBar() {
+        progressBar.post {
+            progressBar.visibility = View.GONE
+        }
+    }
+
+    override fun initRecycler(list: List<ReceiptItem>) {
+        recyclerView.post{
+            recyclerAdapter.notifyDataSetChanged()
+            recyclerAdapter.updateList(list)
+        }
+
+    }
+
+
+    override fun onItemClick(receiptItem: ReceiptItem) {
+        //TODO: Use (prefs.username, receiptItem.code) to call presenter to query receipt details from Room
+        //loadFragment(ManualInputFragment.newInstance())
+    }
+
+    override fun onAddOrMinusBtnClick() {
+        setPresenter()
     }
 
     companion object {
@@ -116,6 +174,8 @@ class ReceiptsFragment : Fragment(), View.OnClickListener {
                 }
             }
     }
+
+
 
 
 }

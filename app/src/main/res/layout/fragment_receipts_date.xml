@@ -72,7 +72,7 @@
         android:layout_height="0dp"
         android:text="2023 年 1 月 10 日"
         android:textColor="@color/black"
-        android:textSize="@dimen/smalltext_size"
+        android:textSize="@dimen/stext_size"
         android:gravity="center"
         android:onClick="onClick"
         android:clickable="true"
@@ -87,7 +87,7 @@
         android:layout_height="wrap_content"
         android:text="消費金額"
         android:textColor="@color/black"
-        android:textSize="@dimen/smalltext_size"
+        android:textSize="@dimen/stext_size"
         android:layout_marginTop="@dimen/small_margin"
         app:layout_constraintStart_toStartOf="@id/gray_rect"
         app:layout_constraintEnd_toStartOf="@id/pnum_textview"
@@ -100,7 +100,7 @@
         android:layout_height="wrap_content"
         android:text="發票張數"
         android:textColor="@color/black"
-        android:textSize="@dimen/smalltext_size"
+        android:textSize="@dimen/stext_size"
         app:layout_constraintStart_toEndOf="@id/price_textview"
         app:layout_constraintEnd_toEndOf="@id/gray_rect"
         app:layout_constraintTop_toTopOf="@id/price_textview"/>
@@ -120,7 +120,7 @@
             android:layout_height="wrap_content"
             android:text="$"
             android:textColor="@color/black"
-            android:textSize="@dimen/smalltext_size"/>
+            android:textSize="@dimen/stext_size"/>
 
         <TextView
             android:id="@+id/price_num_textview"
@@ -128,7 +128,7 @@
             android:layout_height="wrap_content"
             android:text="39"
             android:textColor="@color/black"
-            android:textSize="@dimen/smalltext_size"/>
+            android:textSize="@dimen/stext_size"/>
 
     </LinearLayout>
 
@@ -147,7 +147,7 @@
             android:layout_height="wrap_content"
             android:text="1"
             android:textColor="@color/black"
-            android:textSize="@dimen/smalltext_size"/>
+            android:textSize="@dimen/stext_size"/>
 
         <TextView
             android:id="@+id/pnum_num_textview"
@@ -155,7 +155,7 @@
             android:layout_height="wrap_content"
             android:text="張"
             android:textColor="@color/black"
-            android:textSize="@dimen/smalltext_size"/>
+            android:textSize="@dimen/stext_size"/>
 
     </LinearLayout>
 
@@ -168,5 +168,15 @@
         app:layout_constraintEnd_toEndOf="@id/gray_rect"
         app:layout_constraintTop_toBottomOf="@id/gray_rect"
         app:layout_constraintBottom_toBottomOf="@id/white_rect"/>
+
+    <ProgressBar
+        android:id="@+id/receipt_date_progress_bar"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
