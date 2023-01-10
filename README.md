@@ -16,7 +16,9 @@
 - 資料庫：MySQL、JDBC、Room
 
 ## 畫面
-
+![image info](./screenshot/appScreen1.jpg)
+![image info](./screenshot/appScreen2.jpg)
+![image info](./screenshot/appScreen3.jpg)
 
 ## 待加項目
 - Unit Test
