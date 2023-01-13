@@ -61,7 +61,9 @@ class ReceiptRecyclerAdapter(private val listener: OnItemClickListener) :
     fun getTotalPrice(): Int {
         var total= 0
         for(item in itemList){
-            total+=item.price.toInt()
+            if (item.price != "") {
+                total += item.price.toInt()
+            }
         }
 
         return total

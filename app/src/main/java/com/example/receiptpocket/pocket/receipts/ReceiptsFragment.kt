@@ -80,6 +80,12 @@ class ReceiptsFragment : Fragment(), View.OnClickListener, ReceiptView,
         return view
     }
 
+    override fun onResume() {
+        super.onResume()
+        Log.d("Fragment", "ReceiptsFragment onResume fragments size: " + activity?.supportFragmentManager?.fragments?.size)
+        Log.d("Fragment", "ReceiptsFragment onResume fragments back stack size: " + activity?.supportFragmentManager?.backStackEntryCount)
+    }
+
     private fun bindingViews(view: View){
         receiptsToolbar = view.findViewById<Toolbar>(R.id.receipts_toolbar)
         priceTextView = view.findViewById(R.id.price_num_textview)
@@ -152,7 +158,6 @@ class ReceiptsFragment : Fragment(), View.OnClickListener, ReceiptView,
             priceTextView.text = recyclerAdapter.getTotalPrice().toString()
             pieceTextView.text = recyclerAdapter.itemCount.toString()
         }
-
     }
 
     override fun navigateToManualWithData(data: Receipt) {

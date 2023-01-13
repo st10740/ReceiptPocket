@@ -4,6 +4,7 @@ import android.media.MediaCodec
 import android.os.Build.VERSION_CODES.P
 import android.os.Bundle
 import android.text.TextUtils.replace
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -74,6 +75,12 @@ class WinFragment : Fragment() {
         return view
     }
 
+    override fun onResume() {
+        super.onResume()
+        Log.d("Fragment", "WinFragment onResume fragments size: " + activity?.supportFragmentManager?.fragments?.size)
+        Log.d("Fragment", "WinFragment onResume fragments back stack size: " + activity?.supportFragmentManager?.backStackEntryCount)
+    }
+
     private fun bindingViews(view: View){
         toolbar = view.findViewById(R.id.win_num_input_toolbar)
         yearEditText = view.findViewById(R.id.year_edit_text)
@@ -119,11 +126,11 @@ class WinFragment : Fragment() {
 
         if(year.equals("")) { yearTextInputLayout.error = "不可為空" }
         if(month.equals("")) { monthTextInputLayout.error = "不可為空" }
-        if(first.length<8) { firstTextInputLayout.error = "輸入須為8個數字" }
-        if(second.length<8) { secondTextInputLayout.error = "輸入須為8個數字" }
-        if(third.length<8) { thirdTextInputLayout.error = "輸入須為8個數字" }
-        if(four.length<8) { fourTextInputLayout.error = "輸入須為8個數字" }
-        if(fif.length<8) { fifTextInputLayout.error = "輸入須為8個數字" }
+        if(first.length!=8) { firstTextInputLayout.error = "輸入須為8個數字" }
+        if(second.length!=8) { secondTextInputLayout.error = "輸入須為8個數字" }
+        if(third.length!=8) { thirdTextInputLayout.error = "輸入須為8個數字" }
+        if(four.length!=8) { fourTextInputLayout.error = "輸入須為8個數字" }
+        if(fif.length!=8) { fifTextInputLayout.error = "輸入須為8個數字" }
 
     }
 

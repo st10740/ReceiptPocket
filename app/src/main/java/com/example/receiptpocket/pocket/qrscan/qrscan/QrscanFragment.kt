@@ -37,6 +37,12 @@ class QrscanFragment : Fragment() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        Log.d("Fragment", "QrscanFragment onResume fragments size: " + activity?.supportFragmentManager?.fragments?.size)
+        Log.d("Fragment", "QrscanFragment onResume fragments back stack size: " + activity?.supportFragmentManager?.backStackEntryCount)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -51,6 +57,8 @@ class QrscanFragment : Fragment() {
 
         return view
     }
+
+
 
     private fun bindingViews(view: View){
         manualInputBtn = view.findViewById(R.id.manual_input_barbtn)

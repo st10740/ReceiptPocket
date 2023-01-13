@@ -94,9 +94,9 @@ class RegisterActivity : AppCompatActivity(), RegisterView, View.OnClickListener
             R.id.back_btn -> { finish() } //需再改
 
             R.id.register_btn -> {
-                accTextInputLayout.isErrorEnabled = false
-                nameTextInputLayout.isErrorEnabled = false
-                passwordTextInputLayout.isErrorEnabled = false
+                accTextInputLayout.error = ""
+                nameTextInputLayout.error = ""
+                passwordTextInputLayout.error = ""
 
                 registerPresenter = RegisterPresenterImpl(this)
                 registerPresenter.validateRegister(accTextInputEditText.text.toString().trim()

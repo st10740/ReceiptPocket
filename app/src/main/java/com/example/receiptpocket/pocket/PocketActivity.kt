@@ -2,6 +2,8 @@ package com.example.receiptpocket.pocket
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils.replace
+import android.util.Log
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
@@ -17,7 +19,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class PocketActivity : AppCompatActivity() {
 
-    private lateinit var bottomNav : BottomNavigationView
+    lateinit var bottomNav : BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +43,18 @@ class PocketActivity : AppCompatActivity() {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        Log.d("Fragment", "PocketActivity onResume fragments size: " + supportFragmentManager.fragments.size)
+    }
+
     private fun loadFragment(fragment: Fragment){
+        //清空BackStack的Fragment歷史Back資料
+        val fragmentBackStackCount = supportFragmentManager.backStackEntryCount
+        for(i in 1..fragmentBackStackCount){
+            supportFragmentManager.popBackStack()
+        }
+
         supportFragmentManager.beginTransaction()
             .replace(R.id.container,fragment)
             .commit()

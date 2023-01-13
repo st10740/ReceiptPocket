@@ -2,6 +2,8 @@ package com.example.receiptpocket.pocket.qrscan.manualInput
 
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.os.Bundle
+import android.text.TextUtils.replace
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -101,6 +103,12 @@ class ManualInputFragment : Fragment(), View.OnClickListener, ManualInputView {
         return view
     }
 
+    override fun onResume() {
+        super.onResume()
+        Log.d("Fragment", "ManualInputFragment onResume fragments size: " + activity?.supportFragmentManager?.fragments?.size)
+        Log.d("Fragment", "ManualInputFragment onResume fragments back stack size: " + activity?.supportFragmentManager?.backStackEntryCount)
+    }
+
     private fun bindingViews(view: View){
         manualInputToolbar = view.findViewById(R.id.manual_input_toolbar)
         storeEditText = view.findViewById(R.id.store_name_edit_text)
@@ -139,13 +147,21 @@ class ManualInputFragment : Fragment(), View.OnClickListener, ManualInputView {
         if(describes != null) describesEditText.setText(describes) else describesEditText.setText("")
     }
 
-    private fun loadFragment(fragment: Fragment){
-        (activity as PocketActivity?)?.supportFragmentManager?.beginTransaction()
-            ?.replace(R.id.container,fragment)
-            ?.commit()
+    private fun loadFragment(naviItemId: Int){
+        val bottomNaviView = (activity as PocketActivity).bottomNav
+        bottomNaviView.post {
+            bottomNaviView.selectedItemId = naviItemId
+        }
     }
 
     override fun onClick(v: View?) {
+        //關掉Error
+        yearTextInputLayout.error = ""
+        monthTextInputLayout.error = ""
+        dayTextInputLayout.error = ""
+        code1TextInputLayout.error = ""
+        code2TextInputLayout.error = ""
+
         if (v != null) {
             var sidStr = prefs.userNamePrefs!!
             var storeStr = storeEditText.text.toString()
@@ -162,8 +178,13 @@ class ManualInputFragment : Fragment(), View.OnClickListener, ManualInputView {
             if(!yearStr.equals("") && !monthStr.equals("") && !dayStr.equals("")
                 && !code1Str.equals("") && !code2Str.equals("")){
 
-                val receipt = Receipt(sidStr, storeStr, yearStr.toInt(), monthStr.toInt(),
-                    dayStr.toInt(), code1Str, code2Str, priceStr.toInt(), describesStr)
+                val yearInt = yearStr.toInt()
+                val monthInt = monthStr.toInt()
+                val dayInt = dayStr.toInt()
+                val priceInt: Int? = if(!priceStr.equals("")) priceStr.toInt() else null
+
+                val receipt = Receipt(sidStr, storeStr, yearInt, monthInt,
+                    dayInt, code1Str, code2Str, priceInt, describesStr)
 
                 when(v.id){
                     R.id.delete_btn -> {
@@ -196,8 +217,26 @@ class ManualInputFragment : Fragment(), View.OnClickListener, ManualInputView {
         }
     }
 
+    override fun setCode1CharNumError() {
+        code1TextInputLayout.post {
+            code1TextInputLayout.error = "需為2個大寫英文字母"
+        }
+    }
+
+    override fun setCode1UppercaseError() {
+        code1TextInputLayout.post {
+            code1TextInputLayout.error = "需為大小英文字母"
+        }
+    }
+
+    override fun setCode2CharNumError() {
+        code2TextInputLayout.post {
+            code2TextInputLayout.error = "需為8個數字"
+        }
+    }
+
     override fun navigateToPocket() {
-        loadFragment(ReceiptsFragment())
+        loadFragment(R.id.it_receipts)
     }
 
 

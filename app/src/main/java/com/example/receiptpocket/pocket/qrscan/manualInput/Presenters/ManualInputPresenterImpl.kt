@@ -20,6 +20,21 @@ class ManualInputPresenterImpl(val view: ManualInputView): ManualInputPresenter,
         manualInputInteractor.updateItem(item, isDelete, this)
     }
 
+    override fun setCode1CharNumError() {
+        view.hideProgress()
+        view.setCode1CharNumError()
+    }
+
+    override fun setCode1UppercaseError() {
+        view.hideProgress()
+        view.setCode1UppercaseError()
+    }
+
+    override fun setCode2CharNumError() {
+        view.hideProgress()
+        view.setCode2CharNumError()
+    }
+
     override fun onUpdateDataSuccess() {
         view.hideProgress()
         view.navigateToPocket()

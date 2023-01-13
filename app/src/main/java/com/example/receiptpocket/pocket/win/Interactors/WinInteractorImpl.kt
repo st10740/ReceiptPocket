@@ -112,11 +112,9 @@ class WinInteractorImpl: WinInteractor {
     }
 
     private fun checkThird2FifWinItem(items: List<Receipt>, code: String): List<ReceiptWinItem>{
-        Log.v("DB", "enter check third !!")
 
         val returnItems = mutableListOf<ReceiptWinItem>()
         for(item in items){
-            Log.v("DB", "enter check third while!!")
 
             if(item.code_2 == code){ // 8數全中
                 returnItems.add(packReceiptWinOneItem(item, "$200,000"))
