@@ -23,11 +23,13 @@ class ReceiptInteractorImpl : ReceiptInteractor {
                     val code = item.code_1 + "-" + item.code_2
                     val price = (item.price)?.toString() ?: ""
 
+                    println("date: $date, store: $store, code: $code, price: $price")
+
                     itemList.add(ReceiptItem(date, store, code, price))
                 }
 
                 listener.getItemSuccess(itemList)
-                Log.v("DB", "Receipt interator!!!")
+
 
             } catch (e: SQLException){
                 e.printStackTrace()

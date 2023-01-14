@@ -32,7 +32,8 @@ class ManualInputInteractorImpl: ManualInputInteractor {
 
                 if (!isCode1TwoChar(item.code_1)) { listener.setCode1CharNumError() }
                 else if (!isCode1Uppercase(item.code_1)) { listener.setCode1UppercaseError() }
-                else { listener.setCode2CharNumError() }
+
+                if (!isCode2EightChar(item.code_2)) { listener.setCode2CharNumError() }
             }
 
         }.start()

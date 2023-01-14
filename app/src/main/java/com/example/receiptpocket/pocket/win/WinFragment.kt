@@ -101,9 +101,8 @@ class WinFragment : Fragment() {
     }
 
     private fun setMonthDropDown(){
-        val type = arrayListOf("1-2月", "3-4月", "5-6月", "7-8月", "9-10月", "11-12月")
-        val mAdapter = ArrayAdapter<String>(requireContext(), R.layout.month_dropdown_item, type)
-        monthDropDown.threshold = 1
+        val type = arrayOf("1-2月", "3-4月", "5-6月", "7-8月", "9-10月", "11-12月")
+        val mAdapter = NoFilterAdapter(requireContext(), R.layout.month_dropdown_item, type)
         monthDropDown.setAdapter(mAdapter)
     }
 
@@ -122,7 +121,6 @@ class WinFragment : Fragment() {
             val fragment = WinGetFragment.newInstance(year, month, first, second, third, four, fif)
             loadFragment(fragment)
         }
-
 
         if(year.equals("")) { yearTextInputLayout.error = "不可為空" }
         if(month.equals("")) { monthTextInputLayout.error = "不可為空" }

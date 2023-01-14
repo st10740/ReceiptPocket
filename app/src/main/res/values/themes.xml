@@ -41,6 +41,15 @@
         <item name="android:textColorHint">@color/gray97</item>
     </style>
 
+    <style name="MyTextDropDownMenu" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
+        <!-- border color -->
+        <item name="boxStrokeColor">@color/orange</item>
+        <!-- The color of the label when it is collapsed and the text field is active -->
+        <item name="hintTextColor">@color/orange</item>
+        <!-- The color of the label in all other text field states (such as resting and disabled) -->
+        <item name="android:textColorHint">@color/gray97</item>
+    </style>
+
     <style name="myDatePickerStyle" parent="android:Widget.Material.DatePicker">
         <item name="android:datePickerMode">spinner</item>
     </style>

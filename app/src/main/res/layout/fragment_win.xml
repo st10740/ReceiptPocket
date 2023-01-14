@@ -81,7 +81,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/win_month_text_input_layout"
-                style="@style/MyTextInputLayout"
+                style="@style/MyTextDropDownMenu"
                 app:errorEnabled="true"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -98,7 +98,10 @@
                     android:paddingLeft="16dp"
                     android:textSize="@dimen/mtext_size"
                     android:hint="月份"
-                    android:inputType="number"/>
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:focusableInTouchMode="false"
+                    android:inputType="none"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 

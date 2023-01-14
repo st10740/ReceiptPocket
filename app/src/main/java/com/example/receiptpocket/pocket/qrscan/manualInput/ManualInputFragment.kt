@@ -197,11 +197,11 @@ class ManualInputFragment : Fragment(), View.OnClickListener, ManualInputView {
                 }
             }
 
-            if(yearStr.equals("")) { yearTextInputLayout.error = " " }
-            if(monthStr.equals("")) { monthTextInputLayout.error = " " }
-            if(dayStr.equals("")) { dayTextInputLayout.error = " " }
-            if(code1Str.equals("")) { code1TextInputLayout.error = " " }
-            if(code2Str.equals("")) { code2TextInputLayout.error = " " }
+            if(yearStr.equals("")) { yearTextInputLayout.error = "不可為空" }
+            if(monthStr.equals("")) { monthTextInputLayout.error = "不可為空" }
+            if(dayStr.equals("")) { dayTextInputLayout.error = "不可為空" }
+            if(code1Str.equals("")) { code1TextInputLayout.error = "不可為空" }
+            if(code2Str.equals("")) { code2TextInputLayout.error = "不可為空" }
         }
     }
 
