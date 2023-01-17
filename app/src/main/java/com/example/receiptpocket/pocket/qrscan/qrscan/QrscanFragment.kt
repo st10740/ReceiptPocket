@@ -1,5 +1,8 @@
 package com.example.receiptpocket.pocket.qrscan.qrscan
 
+import android.Manifest
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -12,12 +15,14 @@ import com.budiyev.android.codescanner.CodeScanner
 import com.budiyev.android.codescanner.CodeScannerView
 import com.budiyev.android.codescanner.DecodeCallback
 import com.example.receiptpocket.R
+import com.example.receiptpocket.Room.Receipt
 import com.example.receiptpocket.pocket.PocketActivity
 import com.example.receiptpocket.pocket.qrscan.manualInput.ManualInputFragment
 import com.example.receiptpocket.pocket.qrscan.qrscan.Presenters.QrcodePresenter
 import com.example.receiptpocket.pocket.qrscan.qrscan.Presenters.QrcodePresenterImpl
 import com.example.receiptpocket.pocket.qrscan.qrscan.Views.QrcodeView
 import com.example.receiptpocket.prefs
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -39,6 +44,12 @@ class QrscanFragment : Fragment(), QrcodeView {
     private lateinit var codeScannerView: CodeScannerView
     private lateinit var qrcodePresenter: QrcodePresenter
 
+
+    companion object {
+        private const val CAMERA_PERMISSION_CODE = 100
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -55,6 +66,7 @@ class QrscanFragment : Fragment(), QrcodeView {
         val view = inflater.inflate(R.layout.fragment_qrscan, container, false)
 
         bindingViews(view)
+        getCameraPermission()
         setUpCodeScanner()
 
         manualInputBtn.setOnClickListener { loadFragment(ManualInputFragment()) }
@@ -75,7 +87,7 @@ class QrscanFragment : Fragment(), QrcodeView {
         super.onPause()
     }
 
-    override fun navigateManualInput(
+    override fun showDialog(
         store: String,
         year: String,
         month: String,
@@ -85,12 +97,41 @@ class QrscanFragment : Fragment(), QrcodeView {
         price: String,
         describes: String
     ) {
-        val manualInputFragmentWithDatas = ManualInputFragment.newInstance(store, year, month, day, code_1, code_2, price, describes)
-        loadFragment(manualInputFragmentWithDatas)
+        val builder = AlertDialog.Builder(requireActivity())
+        builder.setCancelable(false)
+        builder.setTitle("掃描成功")
+        builder.setMessage("發票號碼：$code_1-$code_2")
+
+        builder.setNegativeButton("直接儲存", DialogInterface.OnClickListener { dialog, which ->
+            val receipt = Receipt(prefs.userNamePrefs!!, store, year.toInt(), month.toInt(), day.toInt(),
+                code_1, code_2, price?.toInt()?:null, describes)
+
+            qrcodePresenter.storeCodeData(receipt)
+        })
+
+        builder.setPositiveButton("編輯內容", DialogInterface.OnClickListener { dialog, which ->
+            // 跳轉至手動輸入頁面
+            val manualInputFragmentWithDatas = ManualInputFragment.newInstance(store, year, month, day, code_1, code_2, price, describes)
+            loadFragment(manualInputFragmentWithDatas)
+        })
+
+        builder.create().show()
+
     }
 
     override fun reloadQrcodeScanner() {
         codeScanner.startPreview()
+    }
+
+    override fun navigateToPocket() {
+        val bottomNaviView = (activity as PocketActivity).bottomNav
+        bottomNaviView.post {
+            bottomNaviView.selectedItemId = R.id.it_receipts
+        }
+    }
+
+    private fun getCameraPermission(){
+        qrcodePresenter.checkCameraPermission(requireActivity(), Manifest.permission.CAMERA, CAMERA_PERMISSION_CODE)
     }
 
 
@@ -105,7 +146,6 @@ class QrscanFragment : Fragment(), QrcodeView {
         codeScanner = CodeScanner(activity, codeScannerView)
         codeScanner.decodeCallback = DecodeCallback {
             activity.runOnUiThread{
-//                Toast.makeText(activity, it.text, Toast.LENGTH_LONG).show()
                 Log.d("code", it.text)
                 qrcodePresenter.analyzeScanStr(it.text)
             }
@@ -116,6 +156,7 @@ class QrscanFragment : Fragment(), QrcodeView {
 
 
 
+
     private fun loadFragment(fragment: Fragment){
         (activity as PocketActivity?)?.supportFragmentManager?.beginTransaction()
             ?.replace(R.id.container,fragment)
@@ -123,25 +164,7 @@ class QrscanFragment : Fragment(), QrcodeView {
             ?.commit()
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment QrscanFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            QrscanFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
+
 
 
 }

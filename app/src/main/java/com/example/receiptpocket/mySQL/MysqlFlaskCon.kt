@@ -8,7 +8,7 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.IOException
 
 class MysqlFlaskCon {
-    private val ip = "http://192.168.43.71" //"http://192.168.2.26"
+    private val ip = "http://192.168.2.26"  //"http://192.168.43.71"
     private val port = "5000"
 
     fun getAccount(id_: String): MutableList<String>{

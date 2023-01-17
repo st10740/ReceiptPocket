@@ -1,5 +1,10 @@
 package com.example.receiptpocket.pocket.qrscan.qrscan.Presenters
 
+import android.app.Activity
+import android.content.pm.PackageManager
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import com.example.receiptpocket.Room.Receipt
 import com.example.receiptpocket.pocket.qrscan.qrscan.Interactors.QrcodeInteractor
 import com.example.receiptpocket.pocket.qrscan.qrscan.Interactors.QrcodeInteractorImpl
 import com.example.receiptpocket.pocket.qrscan.qrscan.Listeners.OnQrcodeScanFinishedListener
@@ -17,6 +22,15 @@ class QrcodePresenterImpl(val qrcodeView: QrcodeView): QrcodePresenter, OnQrcode
 
     }
 
+    override fun checkCameraPermission(activity: Activity, permission: String, requestCode: Int) {
+        qrcodeInteractor.checkCameraPermission(activity, permission, requestCode, this)
+    }
+
+    override fun storeCodeData(receipt: Receipt) {
+        qrcodeInteractor.storeCodeData(receipt, this)
+    }
+
+
     override fun analyzeSuccess(
         store: String,
         year: String,
@@ -27,11 +41,15 @@ class QrcodePresenterImpl(val qrcodeView: QrcodeView): QrcodePresenter, OnQrcode
         price: String,
         describes: String
     ) {
-        qrcodeView.navigateManualInput(store, year, month, day, code_1, code_2, price, describes)
+        qrcodeView.showDialog(store, year, month, day, code_1, code_2, price, describes)
     }
 
     override fun analyzeFail() {
         qrcodeView.reloadQrcodeScanner()
+    }
+
+    override fun storeSuccess() {
+        qrcodeView.navigateToPocket()
     }
 
 }
