@@ -1,6 +1,7 @@
 package com.example.receiptpocket.register.Interactors
 
-import com.example.receiptpocket.mySQL.MysqlCon
+
+import com.example.receiptpocket.mySQL.MysqlFlaskCon
 import com.example.receiptpocket.register.Listeners.OnRegisterFinishedListener
 
 class RegisterInteractorImpl : RegisterInteractor {
@@ -15,11 +16,10 @@ class RegisterInteractorImpl : RegisterInteractor {
 
             if((!id.equals("")) && (!name.equals("")) && (!password.equals(""))){
 
-                val con = MysqlCon()
-                con.run()
+                val con = MysqlFlaskCon()
                 val repeatedUsername = con.getAccount(id)
 
-                if(repeatedUsername.isEmpty()){ // 沒有重複的帳號名稱
+                if(repeatedUsername[0].equals("")){ // 沒有重複的帳號名稱
                     con.insertAccount(id, name, password)
                     listener.onSuccess()
                 }

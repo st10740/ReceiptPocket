@@ -1,10 +1,10 @@
 package com.example.receiptpocket.login.Interactors
 
 import com.example.receiptpocket.App
-import com.example.receiptpocket.mySQL.MysqlCon
 import com.example.receiptpocket.Room.Receipt
 import com.example.receiptpocket.Room.ReceiptDatabase
 import com.example.receiptpocket.login.Listeners.OnLoginFinishedListener
+import com.example.receiptpocket.mySQL.MysqlFlaskCon
 import com.example.receiptpocket.prefs
 
 class LoginInteractorImpl : LoginInteractor {
@@ -13,11 +13,11 @@ class LoginInteractorImpl : LoginInteractor {
 
             if ((!username.equals("")) && (!password.equals(""))){
 
-                val con = MysqlCon()
-                con.run()
+                val con = MysqlFlaskCon()
+
                 val dataList = con.getAccount(username) // id, name, password
 
-                if (dataList.isEmpty()) { listener.setErrorUsername() }
+                if (dataList[0].equals("")) { listener.setErrorUsername() }
 
                 else if (!password.equals(dataList.get(2))) { listener.setErrorPassword() }
 

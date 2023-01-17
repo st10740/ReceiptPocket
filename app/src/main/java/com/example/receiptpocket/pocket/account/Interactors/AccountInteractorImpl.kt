@@ -1,9 +1,9 @@
 package com.example.receiptpocket.pocket.account.Interactors
 
 import com.example.receiptpocket.App
-import com.example.receiptpocket.mySQL.MysqlCon
 import com.example.receiptpocket.mySQL.ReceiptModel
 import com.example.receiptpocket.Room.ReceiptDatabase
+import com.example.receiptpocket.mySQL.MysqlFlaskCon
 import com.example.receiptpocket.pocket.account.Listeners.OnLogoutFinishedListener
 import com.example.receiptpocket.prefs
 
@@ -11,8 +11,7 @@ class AccountInteractorImpl : AccountInteractor {
     override fun logout(listener: OnLogoutFinishedListener) {
         Thread{
 
-            val con = MysqlCon()
-            con.run()
+            val con = MysqlFlaskCon()
 
             // 刪除遠端資料庫目前登入者的所有Receipt資料
             con.deleteReceiptsById(prefs.userNamePrefs!!)

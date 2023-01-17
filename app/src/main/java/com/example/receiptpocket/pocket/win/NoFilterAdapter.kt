@@ -1,3 +1,6 @@
+// To prevent bugs caused by the filter functionality in ArrayAdapter,
+// we need to create our own implementation.
+
 package com.example.receiptpocket.pocket.win
 
 import android.content.Context
