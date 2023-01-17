@@ -8,12 +8,13 @@
   - 登入後重新打開App會保留在登入狀態，直到按下登出鍵
 - 根據指定的月份或日期查看持有發票
 - 手動新增、修改 & 刪除發票資訊
+- QR Code掃描新增發票資訊
 - 根據輸入的中獎資訊進行中獎比對，並呈現結果
 
 ## 使用技術
 - 語言：Kotlin
 - 架構：MVP
-- 資料庫：MySQL、JDBC、Room
+- 資料庫：MySQL、Flask、Room
 
 ## 畫面
 ![image info](./screenshot/appScreen1.jpg)
@@ -22,7 +23,6 @@
 
 ## 待加項目
 - Unit Test
-- QRCode掃描器
 - 購物分析
 - 根據關鍵字搜尋發票
 - 自動導入中獎號碼
